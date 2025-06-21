@@ -11,7 +11,6 @@ export default defineConfig(({ mode }) => ({
   plugins: [
     react({
       // Explicitly configure SWC for React
-      jsxImportSource: '@emotion/react',
       dev: mode === 'development',
     }),
     mode === 'development' && componentTagger(), // Conditional inclusion
