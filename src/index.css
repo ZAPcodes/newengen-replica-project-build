@@ -121,25 +121,6 @@
   }
 }
 
-/* Professional color utility classes */
-.bg-primary-dark { background-color: #003135; }
-.bg-primary-medium { background-color: #024950; }
-.bg-accent-rust { background-color: #964734; }
-.bg-secondary-cyan { background-color: #0FA4AF; }
-.bg-light-blue { background-color: #AFDDE5; }
-
-.text-primary-dark { color: #003135; }
-.text-primary-medium { color: #024950; }
-.text-accent-rust { color: #964734; }
-.text-secondary-cyan { color: #0FA4AF; }
-.text-light-blue { color: #AFDDE5; }
-
-.border-primary-dark { border-color: #003135; }
-.border-primary-medium { border-color: #024950; }
-.border-accent-rust { border-color: #964734; }
-.border-secondary-cyan { border-color: #0FA4AF; }
-.border-light-blue { border-color: #AFDDE5; }
-
 /* Advanced tech animations */
 @keyframes matrix-rain {
   0% {

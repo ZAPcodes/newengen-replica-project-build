@@ -62,12 +62,12 @@ export default {
 					border: 'hsl(var(--sidebar-border))',
 					ring: 'hsl(var(--sidebar-ring))'
 				},
-				// Professional color scheme
-				'primary-dark': '#003135',
-				'primary-medium': '#024950',
-				'accent-rust': '#964734',
-				'secondary-cyan': '#0FA4AF',
-				'light-blue': '#AFDDE5'
+				// Professional color scheme using CSS variables
+				'primary-dark': 'hsl(var(--primary-dark))',
+				'primary-medium': 'hsl(var(--primary-medium))',
+				'accent-rust': 'hsl(var(--accent-rust))',
+				'secondary-cyan': 'hsl(var(--secondary-cyan))',
+				'light-blue': 'hsl(var(--light-blue))'
 			},
 			borderRadius: {
 				lg: 'var(--radius)',
