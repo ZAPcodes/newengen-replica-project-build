@@ -1,6 +1,6 @@
 import Header from "@/components/Header";
 import Hero from "@/components/Hero";
-import Services from "@/components/ServicesNew";
+import Services from "@/components/Services";
 import WhoWeAre from "@/components/WhoWeAre";
 import TestimonialSection from "@/components/TestimonialSection";
 import Footer from "@/components/Footer";

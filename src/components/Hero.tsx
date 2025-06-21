@@ -1,104 +1,11 @@
 import { Button } from "@/components/ui/button";
 import { Terminal, Code, Database, Shield, Cpu } from "lucide-react";
-import React, { useRef, useEffect } from "react";
-import AnimatedCard from "./AnimatedCard";
+import React from "react";
 import AnimatedText from "./AnimatedText";
 import MagneticButton from "./MagneticButton";
 import TiltCard from "./TiltCard";
 import NeonGlowText from "./NeonGlowText";
 import FloatingParticles from "./FloatingParticles";
-import { useCardAnimation, useResponsiveCardAnimation } from "@/hooks/useCardAnimation";
-
-// Card data for the animated cards
-const cardData = [
-  {
-    title: "Cybersecurity",
-    icon: Shield,
-    description: "Ethical Hacking & Security Analysis",
-    color: "cyan",
-    skills: ["Penetration Testing", "Network Security", "Incident Response"],
-    duration: "12 weeks",
-    image: "/public/lovable-uploads/212e75b6-821d-4073-aba6-93892cbde78c.png"
-  },
-  {
-    title: "Full Stack Development",
-    icon: Code,
-    description: "Modern Web & Mobile Applications",
-    color: "purple",
-    skills: ["React/Next.js", "Node.js", "Cloud Deployment"],
-    duration: "16 weeks",
-    image: "/public/lovable-uploads/d93bec81-b724-41cb-b278-f9cad0ccf892.png"
-  },
-  {
-    title: "Data Science",
-    icon: Database,
-    description: "AI/ML & Predictive Analytics",
-    color: "green",
-    skills: ["Python/R", "Machine Learning", "Deep Learning"],
-    duration: "14 weeks",
-    image: "/public/lovable-uploads/development.jpg"
-  },
-  {
-    title: "Data Analysis",
-    icon: Cpu,
-    description: "Business Intelligence & Visualization",
-    color: "blue",
-    skills: ["SQL", "Power BI", "Statistical Analysis"],
-    duration: "10 weeks",
-    image: "/public/favicon.ico"
-  }
-];
-
-// Animated Cards Container Component
-function AnimatedCardsContainer() {
-  const heroContainerRef = useRef<HTMLDivElement>(null);
-  const serviceContainerRef = useRef<HTMLDivElement>(null);
-  const cardRefs = useRef<HTMLDivElement[]>([]);
-
-  // Initialize GSAP animations
-  useCardAnimation({ 
-    heroContainerRef, 
-    serviceContainerRef, 
-    cardRefs 
-  });
-  
-  useResponsiveCardAnimation(cardRefs);
-
-  useEffect(() => {
-    // Find services section after component mounts
-    const servicesSection = document.getElementById('services');
-    if (servicesSection) {
-      serviceContainerRef.current = servicesSection as HTMLDivElement;
-    }
-  }, []);
-
-  return (
-    <div 
-      ref={heroContainerRef}
-      className="relative w-full h-96 flex items-center justify-center"
-      style={{ perspective: '1000px' }}
-    >
-      {/* Floating cards that will animate to services section */}
-      {cardData.map((card, index) => (
-        <TiltCard key={card.title} className="absolute">
-          <AnimatedCard
-            ref={(el) => {
-              if (el) cardRefs.current[index] = el;
-            }}
-            {...card}
-            index={index}
-            className="hover-magnetic"
-          />
-        </TiltCard>
-      ))}
-      
-      {/* Visual indicator for the animation */}
-      <div className="absolute inset-0 pointer-events-none">
-        <div className="w-full h-full bg-gradient-to-b from-transparent via-secondary-cyan/5 to-transparent rounded-3xl animate-pulse" />
-      </div>
-    </div>
-  );
-}
 
 const Hero = () => {
   return (
@@ -219,8 +126,15 @@ const Hero = () => {
           </div>
 
           <div className="relative animate-slide-up-stagger stagger-3">
-            {/* Main animated cards container */}
-            <AnimatedCardsContainer />
+            {/* Hero Image/Visual */}
+            <div className="relative w-full h-96 flex items-center justify-center">
+              <div className="w-full h-full bg-gradient-to-b from-transparent via-secondary-cyan/5 to-transparent rounded-3xl animate-pulse" />
+              <div className="absolute inset-0 flex items-center justify-center">
+                <div className="text-6xl font-tech font-bold text-secondary-cyan/20">
+                  TECH
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
