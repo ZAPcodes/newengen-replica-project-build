@@ -122,6 +122,8 @@
   }
 }
 
+/* PREMIUM ANIMATIONS FOR HACKATHON */
+
 /* Advanced tech animations */
 @keyframes matrix-rain {
   0% {
@@ -221,6 +223,78 @@
   }
 }
 
+/* PREMIUM HOVER EFFECTS */
+@keyframes magnetic-pull {
+  0% {
+    transform: scale(1) rotate(0deg);
+  }
+  50% {
+    transform: scale(1.05) rotate(1deg);
+  }
+  100% {
+    transform: scale(1.02) rotate(0deg);
+  }
+}
+
+@keyframes shine-sweep {
+  0% {
+    transform: translateX(-100%) skewX(-15deg);
+  }
+  100% {
+    transform: translateX(200%) skewX(-15deg);
+  }
+}
+
+@keyframes neon-pulse {
+  0%, 100% {
+    text-shadow: 
+      0 0 5px #00FFC6,
+      0 0 10px #00FFC6,
+      0 0 15px #00FFC6,
+      0 0 20px #00FFC6;
+  }
+  50% {
+    text-shadow: 
+      0 0 10px #00FFC6,
+      0 0 20px #00FFC6,
+      0 0 30px #00FFC6,
+      0 0 40px #00FFC6;
+  }
+}
+
+@keyframes liquid-fill {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+@keyframes parallax-float {
+  0%, 100% {
+    transform: translateY(0px) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-20px) rotate(2deg);
+  }
+}
+
+@keyframes depth-emerge {
+  0% {
+    transform: translateZ(-200px) scale(0.8);
+    opacity: 0;
+  }
+  100% {
+    transform: translateZ(0px) scale(1);
+    opacity: 1;
+  }
+}
+
+/* ANIMATION CLASSES */
 .animate-matrix-rain {
   animation: matrix-rain 3s linear infinite;
 }
@@ -266,32 +340,164 @@
   animation: infinite-scroll 60s linear infinite;
 }
 
-/* Tech-focused utility classes with Neo-Mint theme and proper contrast */
+.animate-magnetic-pull {
+  animation: magnetic-pull 0.6s ease-out;
+}
+
+.animate-shine-sweep {
+  animation: shine-sweep 1.5s ease-out;
+}
+
+.animate-neon-pulse {
+  animation: neon-pulse 2s ease-in-out infinite;
+}
+
+.animate-liquid-fill {
+  background: linear-gradient(45deg, #00FFC6, #12C2E9, #00FFC6);
+  background-size: 300% 300%;
+  animation: liquid-fill 3s ease-in-out infinite;
+}
+
+.animate-parallax-float {
+  animation: parallax-float 6s ease-in-out infinite;
+}
+
+.animate-depth-emerge {
+  animation: depth-emerge 1s ease-out forwards;
+}
+
+/* PREMIUM HOVER EFFECTS */
+.hover-tilt {
+  transition: transform 0.3s ease;
+  transform-style: preserve-3d;
+}
+
+.hover-tilt:hover {
+  transform: perspective(1000px) rotateX(10deg) rotateY(10deg) scale(1.05);
+}
+
+.hover-magnetic {
+  transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  cursor: pointer;
+}
+
+.hover-magnetic:hover {
+  transform: scale(1.05) translateY(-5px);
+  box-shadow: 0 20px 40px rgba(0, 255, 198, 0.3);
+}
+
+.hover-shine {
+  position: relative;
+  overflow: hidden;
+}
+
+.hover-shine::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+  transition: left 0.5s;
+}
+
+.hover-shine:hover::before {
+  left: 100%;
+}
+
+.hover-glow {
+  transition: all 0.3s ease;
+}
+
+.hover-glow:hover {
+  box-shadow: 
+    0 0 20px rgba(0, 255, 198, 0.5),
+    0 0 40px rgba(0, 255, 198, 0.3),
+    0 0 60px rgba(0, 255, 198, 0.1);
+  transform: translateY(-2px);
+}
+
+.hover-expand {
+  transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  transform-origin: center;
+}
+
+.hover-expand:hover {
+  transform: scale(1.1);
+  z-index: 10;
+}
+
+/* TECH-FOCUSED UTILITY CLASSES */
 .tech-card {
-  @apply bg-white/95 backdrop-blur-sm border border-gray-200 rounded-xl shadow-lg;
-  color: #1f2937; /* Ensure dark text on light background */
+  @apply bg-white/95 backdrop-blur-sm border border-gray-200 rounded-xl shadow-lg hover-magnetic;
+  color: #1f2937;
+  position: relative;
+  overflow: hidden;
+}
+
+.tech-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(0, 255, 198, 0.1), transparent);
+  transition: left 0.6s ease;
+}
+
+.tech-card:hover::before {
+  left: 100%;
 }
 
 .tech-button {
-  @apply bg-gradient-to-r from-neo-mint to-accent-blue hover:from-neo-mint/90 hover:to-accent-blue/90 text-dark-bg font-semibold px-6 py-3 rounded-lg transition-all duration-300 transform hover:scale-105;
-  box-shadow: 0 4px 15px rgba(0, 255, 198, 0.3);
-  color: #0F0F0F; /* Dark text on bright background */
+  @apply bg-gradient-to-r from-neo-mint to-accent-blue hover:from-neo-mint/90 hover:to-accent-blue/90 text-dark-bg font-semibold px-6 py-3 rounded-lg transition-all duration-300 transform hover:scale-105 hover-glow;
+  color: #0F0F0F;
+  position: relative;
+  overflow: hidden;
 }
 
-.tech-button:hover {
-  box-shadow: 0 6px 20px rgba(0, 255, 198, 0.4);
+.tech-button::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  transition: width 0.6s, height 0.6s;
+}
+
+.tech-button:hover::before {
+  width: 300px;
+  height: 300px;
 }
 
 .tech-button-accent {
-  @apply bg-gradient-to-r from-accent-blue to-accent-blue/80 hover:from-accent-blue/90 hover:to-accent-blue/70 text-white font-semibold px-6 py-3 rounded-lg transition-all duration-300 transform hover:scale-105;
-  box-shadow: 0 4px 15px rgba(18, 194, 233, 0.3);
+  @apply bg-gradient-to-r from-accent-blue to-accent-blue/80 hover:from-accent-blue/90 hover:to-accent-blue/70 text-white font-semibold px-6 py-3 rounded-lg transition-all duration-300 transform hover:scale-105 hover-glow;
 }
 
 .code-block {
   @apply bg-dark-bg border border-neo-mint/30 rounded-lg p-4 font-code text-sm;
   background-image: linear-gradient(45deg, transparent 25%, rgba(0, 255, 198, 0.02) 25%, rgba(0, 255, 198, 0.02) 50%, transparent 50%, transparent 75%, rgba(0, 255, 198, 0.02) 75%);
   background-size: 20px 20px;
-  color: #F9FAFB; /* Light text on dark background */
+  color: #F9FAFB;
+  position: relative;
+  overflow: hidden;
+}
+
+.code-block::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(0, 255, 198, 0.1), transparent);
+  animation: shine-sweep 3s ease-in-out infinite;
 }
 
 .tech-grid-pattern {
@@ -299,14 +505,15 @@
     linear-gradient(rgba(0, 255, 198, 0.1) 1px, transparent 1px),
     linear-gradient(90deg, rgba(0, 255, 198, 0.1) 1px, transparent 1px);
   background-size: 50px 50px;
+  animation: parallax-float 8s ease-in-out infinite;
 }
 
-/* Neo-Mint cyber-themed backgrounds with proper text contrast */
+/* CYBER-THEMED BACKGROUNDS */
 .cyber-bg {
   background: linear-gradient(135deg, #0F0F0F 0%, #1a1a1a 50%, #0F0F0F 100%);
   position: relative;
   overflow: hidden;
-  color: #F9FAFB; /* Light text on dark background */
+  color: #F9FAFB;
 }
 
 .cyber-bg::before {
@@ -320,13 +527,27 @@
     radial-gradient(circle at 25% 25%, rgba(0, 255, 198, 0.1) 0%, transparent 50%),
     radial-gradient(circle at 75% 75%, rgba(18, 194, 233, 0.1) 0%, transparent 50%);
   pointer-events: none;
+  animation: liquid-fill 10s ease-in-out infinite;
 }
 
-/* Enhanced hover effects for tech cards */
+.cyber-bg::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grid" width="10" height="10" patternUnits="userSpaceOnUse"><path d="M 10 0 L 0 0 0 10" fill="none" stroke="%2300FFC6" stroke-width="0.5" opacity="0.1"/></pattern></defs><rect width="100" height="100" fill="url(%23grid)"/></svg>');
+  pointer-events: none;
+  animation: parallax-float 12s ease-in-out infinite reverse;
+}
+
+/* ENHANCED HOVER EFFECTS */
 .tech-hover-effect {
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
   position: relative;
   overflow: hidden;
+  transform-style: preserve-3d;
 }
 
 .tech-hover-effect::before {
@@ -337,7 +558,8 @@
   width: 100%;
   height: 100%;
   background: linear-gradient(90deg, transparent, rgba(0, 255, 198, 0.2), transparent);
-  transition: left 0.5s;
+  transition: left 0.6s ease;
+  z-index: 1;
 }
 
 .tech-hover-effect:hover::before {
@@ -345,11 +567,13 @@
 }
 
 .tech-hover-effect:hover {
-  transform: translateY(-8px);
-  box-shadow: 0 20px 40px rgba(15, 15, 15, 0.4);
+  transform: translateY(-10px) rotateX(5deg) rotateY(5deg) scale(1.02);
+  box-shadow: 
+    0 25px 50px rgba(0, 0, 0, 0.3),
+    0 0 30px rgba(0, 255, 198, 0.2);
 }
 
-/* Staggered animation delays */
+/* STAGGERED ANIMATION DELAYS */
 .stagger-1 { animation-delay: 0.1s; }
 .stagger-2 { animation-delay: 0.2s; }
 .stagger-3 { animation-delay: 0.3s; }
@@ -357,95 +581,130 @@
 .stagger-5 { animation-delay: 0.5s; }
 .stagger-6 { animation-delay: 0.6s; }
 
-/* Terminal-style elements */
+/* TERMINAL-STYLE ELEMENTS */
 .terminal {
   @apply bg-dark-bg text-neo-mint font-code rounded-lg border border-neo-mint/30;
   box-shadow: inset 0 0 20px rgba(0, 0, 0, 0.5);
+  position: relative;
 }
 
 .terminal::before {
   content: '$ ';
   color: #00FFC6;
+  animation: neon-pulse 2s ease-in-out infinite;
 }
 
-/* Professional fade-in animation */
+.terminal::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(45deg, transparent 49%, rgba(0, 255, 198, 0.03) 50%, transparent 51%);
+  background-size: 20px 20px;
+  animation: tech-shimmer 3s linear infinite;
+  pointer-events: none;
+}
+
+/* PROFESSIONAL FADE-IN ANIMATION */
 @keyframes fade-in {
   from {
     opacity: 0;
-    transform: translateY(20px);
+    transform: translateY(30px) scale(0.95);
   }
   to {
     opacity: 1;
-    transform: translateY(0);
+    transform: translateY(0) scale(1);
   }
 }
 
 .animate-fade-in {
-  animation: fade-in 0.6s ease-out forwards;
+  animation: fade-in 0.8s ease-out forwards;
 }
 
-/* Scale animation for interactive elements */
+/* SCALE ANIMATION FOR INTERACTIVE ELEMENTS */
 @keyframes scale-in {
   from {
     opacity: 0;
-    transform: scale(0.95);
+    transform: scale(0.9) rotateY(-10deg);
   }
   to {
     opacity: 1;
-    transform: scale(1);
+    transform: scale(1) rotateY(0deg);
   }
 }
 
 .animate-scale-in {
-  animation: scale-in 0.5s ease-out forwards;
+  animation: scale-in 0.6s ease-out forwards;
 }
 
-/* Hover scale utility */
+/* HOVER SCALE UTILITY */
 .hover-scale {
-  transition: transform 0.3s ease;
+  transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  transform-style: preserve-3d;
 }
 
 .hover-scale:hover {
-  transform: scale(1.05);
+  transform: scale(1.05) translateZ(20px);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
 }
 
-/* Neo-Mint gradient backgrounds */
+/* NEO-MINT GRADIENT BACKGROUNDS */
 .gradient-primary {
   background: linear-gradient(135deg, #0F0F0F 0%, #1a1a1a 100%);
+  position: relative;
+}
+
+.gradient-primary::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(45deg, transparent, rgba(0, 255, 198, 0.05), transparent);
+  animation: liquid-fill 8s ease-in-out infinite;
 }
 
 .gradient-secondary {
   background: linear-gradient(135deg, #00FFC6 0%, #12C2E9 100%);
+  animation: liquid-fill 6s ease-in-out infinite;
 }
 
 .gradient-accent {
   background: linear-gradient(135deg, #12C2E9 0%, #00FFC6 100%);
+  animation: liquid-fill 4s ease-in-out infinite reverse;
 }
 
-/* Text shadow for better readability */
+/* TEXT SHADOW FOR BETTER READABILITY */
 .text-shadow {
-  text-shadow: 0 2px 4px rgba(15, 15, 15, 0.3);
+  text-shadow: 0 2px 8px rgba(15, 15, 15, 0.4);
 }
 
-/* Neo-Mint button variants with proper contrast */
+.text-shadow-glow {
+  text-shadow: 
+    0 0 10px rgba(0, 255, 198, 0.5),
+    0 0 20px rgba(0, 255, 198, 0.3),
+    0 0 30px rgba(0, 255, 198, 0.1);
+}
+
+/* NEO-MINT BUTTON VARIANTS */
 .btn-primary {
-  @apply bg-neo-mint hover:bg-neo-mint/90 text-dark-bg font-semibold py-3 px-6 rounded-lg transition-all duration-300 shadow-lg hover:shadow-xl;
-  color: #0F0F0F; /* Dark text on bright background */
+  @apply bg-neo-mint hover:bg-neo-mint/90 text-dark-bg font-semibold py-3 px-6 rounded-lg transition-all duration-300 shadow-lg hover:shadow-xl hover-magnetic;
+  color: #0F0F0F;
 }
 
 .btn-secondary {
-  @apply bg-accent-blue hover:bg-accent-blue/90 text-white font-semibold py-3 px-6 rounded-lg transition-all duration-300 shadow-lg hover:shadow-xl;
+  @apply bg-accent-blue hover:bg-accent-blue/90 text-white font-semibold py-3 px-6 rounded-lg transition-all duration-300 shadow-lg hover:shadow-xl hover-magnetic;
 }
 
 .btn-accent {
-  @apply bg-dark-bg hover:bg-dark-bg/90 text-neo-mint border border-neo-mint font-semibold py-3 px-6 rounded-lg transition-all duration-300;
+  @apply bg-dark-bg hover:bg-dark-bg/90 text-neo-mint border border-neo-mint font-semibold py-3 px-6 rounded-lg transition-all duration-300 hover-glow;
 }
 
 .btn-outline {
-  @apply border-2 border-neo-mint text-neo-mint hover:bg-neo-mint hover:text-dark-bg font-semibold py-3 px-6 rounded-lg transition-all duration-300;
+  @apply border-2 border-neo-mint text-neo-mint hover:bg-neo-mint hover:text-dark-bg font-semibold py-3 px-6 rounded-lg transition-all duration-300 hover-magnetic;
 }
 
-/* Responsive design utilities */
+/* RESPONSIVE DESIGN UTILITIES */
 @media (max-width: 768px) {
   .cyber-bg {
     background: linear-gradient(180deg, #0F0F0F 0%, #1a1a1a 50%, #0F0F0F 100%);
@@ -454,9 +713,13 @@
   .animate-infinite-scroll {
     animation: infinite-scroll 40s linear infinite;
   }
+
+  .hover-tilt:hover {
+    transform: perspective(1000px) rotateX(5deg) rotateY(5deg) scale(1.02);
+  }
 }
 
-/* Accessibility improvements */
+/* ACCESSIBILITY IMPROVEMENTS */
 @media (prefers-reduced-motion: reduce) {
   .animate-slide-up-stagger,
   .animate-float-in,
@@ -465,14 +728,23 @@
   .animate-card-fly-in,
   .animate-card-settle,
   .animate-infinite-scroll,
+  .animate-magnetic-pull,
+  .animate-shine-sweep,
+  .animate-neon-pulse,
+  .animate-liquid-fill,
+  .animate-parallax-float,
+  .animate-depth-emerge,
   .tech-hover-effect,
-  .hover-scale {
-    animation: none;
-    transition: none;
+  .hover-scale,
+  .hover-magnetic,
+  .hover-tilt {
+    animation: none !important;
+    transition: none !important;
+    transform: none !important;
   }
 }
 
-/* High contrast mode support */
+/* HIGH CONTRAST MODE SUPPORT */
 @media (prefers-contrast: high) {
   .tech-card {
     border-width: 2px;
@@ -489,12 +761,12 @@
   }
 }
 
-/* Smooth scrolling for better UX */
+/* SMOOTH SCROLLING */
 html {
   scroll-behavior: smooth;
 }
 
-/* Card animation states */
+/* CARD ANIMATION STATES */
 .card-initial {
   transform: translateY(-100vh) scale(0.8) rotateY(45deg);
   opacity: 0;
@@ -510,12 +782,25 @@ html {
   opacity: 1;
 }
 
-/* Enhanced shadow effects */
+/* ENHANCED SHADOW EFFECTS */
 .shadow-3xl {
   box-shadow: 0 35px 60px -12px rgba(0, 0, 0, 0.25);
 }
 
-/* Neo-Mint glowing border effect */
+.shadow-glow {
+  box-shadow: 
+    0 0 20px rgba(0, 255, 198, 0.3),
+    0 10px 40px rgba(0, 0, 0, 0.2);
+}
+
+.shadow-glow-intense {
+  box-shadow: 
+    0 0 30px rgba(0, 255, 198, 0.5),
+    0 0 60px rgba(0, 255, 198, 0.3),
+    0 20px 60px rgba(0, 0, 0, 0.3);
+}
+
+/* NEO-MINT GLOWING BORDER EFFECT */
 .glow-border {
   position: relative;
 }
@@ -528,102 +813,64 @@ html {
   border-radius: inherit;
   z-index: -1;
   opacity: 0;
-  transition: opacity 0.3s ease;
+  transition: opacity 0.4s ease;
+  animation: liquid-fill 3s ease-in-out infinite;
 }
 
 .glow-border:hover::before {
   opacity: 1;
 }
 
-/* Neo-Mint specific utilities */
+/* NEO-MINT SPECIFIC UTILITIES */
 .neo-mint-glow {
   box-shadow: 0 0 30px rgba(0, 255, 198, 0.3);
+  transition: all 0.3s ease;
 }
 
 .neo-mint-glow:hover {
   box-shadow: 0 0 50px rgba(0, 255, 198, 0.5);
+  transform: translateY(-2px);
 }
 
 .accent-blue-glow {
   box-shadow: 0 0 30px rgba(18, 194, 233, 0.3);
+  transition: all 0.3s ease;
 }
 
 .accent-blue-glow:hover {
   box-shadow: 0 0 50px rgba(18, 194, 233, 0.5);
+  transform: translateY(-2px);
 }
 
-/* Ensure proper text contrast on all backgrounds */
+/* ENSURE PROPER TEXT CONTRAST */
 .bg-white, .bg-gray-50, .bg-gray-100 {
-  color: #1f2937; /* Dark text on light backgrounds */
-}
-
-.bg-gray-800, .bg-gray-900, .bg-black, .cyber-bg {
-  color: #f9fafb; /* Light text on dark backgrounds */
-}
-
-/* Override any problematic text colors */
-.text-white {
-  color: #ffffff !important;
-}
-
-.text-black {
-  color: #000000 !important;
-}
-
-.text-gray-900 {
-  color: #111827 !important;
-}
-
-.text-gray-800 {
   color: #1f2937 !important;
 }
 
-.text-gray-700 {
-  color: #374151 !important;
+.bg-gray-800, .bg-gray-900, .bg-black, .cyber-bg {
+  color: #f9fafb !important;
 }
 
-.text-gray-600 {
-  color: #4b5563 !important;
-}
+/* OVERRIDE PROBLEMATIC TEXT COLORS */
+.text-white { color: #ffffff !important; }
+.text-black { color: #000000 !important; }
+.text-gray-900 { color: #111827 !important; }
+.text-gray-800 { color: #1f2937 !important; }
+.text-gray-700 { color: #374151 !important; }
+.text-gray-600 { color: #4b5563 !important; }
+.text-gray-500 { color: #6b7280 !important; }
+.text-gray-400 { color: #9ca3af !important; }
+.text-gray-300 { color: #d1d5db !important; }
+.text-gray-200 { color: #e5e7eb !important; }
+.text-gray-100 { color: #f3f4f6 !important; }
 
-.text-gray-500 {
-  color: #6b7280 !important;
-}
+/* NEO-MINT THEME COLORS */
+.text-neo-mint { color: #00FFC6 !important; }
+.text-accent-blue { color: #12C2E9 !important; }
+.text-light-blue { color: #E0F7FF !important; }
+.text-accent-rust { color: #FF6B35 !important; }
 
-.text-gray-400 {
-  color: #9ca3af !important;
-}
-
-.text-gray-300 {
-  color: #d1d5db !important;
-}
-
-.text-gray-200 {
-  color: #e5e7eb !important;
-}
-
-.text-gray-100 {
-  color: #f3f4f6 !important;
-}
-
-/* Ensure proper contrast for Neo-Mint theme colors */
-.text-neo-mint {
-  color: #00FFC6 !important;
-}
-
-.text-accent-blue {
-  color: #12C2E9 !important;
-}
-
-.text-light-blue {
-  color: #E0F7FF !important;
-}
-
-.text-accent-rust {
-  color: #FF6B35 !important;
-}
-
-/* Fix specific component text visibility */
+/* COMPONENT-SPECIFIC FIXES */
 .bg-primary-dark {
   background-color: #0F0F0F;
   color: #F9FAFB;
@@ -639,24 +886,60 @@ html {
   color: #0F0F0F;
 }
 
-/* Ensure cards have proper contrast */
+/* CARD STYLING */
 .card {
   background-color: white;
   color: #1f2937;
   border: 1px solid #e5e7eb;
+  transition: all 0.3s ease;
 }
 
-/* Fix button text visibility */
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+}
+
+/* BUTTON STYLING */
 button {
   font-weight: 600;
+  transition: all 0.3s ease;
 }
 
 .bg-gradient-to-r {
   font-weight: 700;
 }
 
-/* Ensure all text is readable */
+/* FONT SMOOTHING */
 * {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+/* CUSTOM SCROLLBAR */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #1a1a1a;
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(45deg, #00FFC6, #12C2E9);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(45deg, #12C2E9, #00FFC6);
+}
+
+/* SELECTION STYLING */
+::selection {
+  background: rgba(0, 255, 198, 0.3);
+  color: #0F0F0F;
+}
+
+::-moz-selection {
+  background: rgba(0, 255, 198, 0.3);
+  color: #0F0F0F;
 }
