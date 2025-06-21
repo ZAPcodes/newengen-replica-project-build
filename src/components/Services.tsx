@@ -123,10 +123,10 @@ const Services = () => {
           />
         </div>
 
-        {/* Services Grid - Target for flying cards */}
+        {/* Services Grid - 2x2 Layout for Cards */}
         <div 
           ref={gridContainerRef}
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 max-w-6xl mx-auto min-h-[500px] items-center justify-items-center mb-16"
+          className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto min-h-[800px] items-center justify-items-center mb-16"
         >
           {programs.map((program, index) => {
             const colorClasses = getColorClasses(program.color);

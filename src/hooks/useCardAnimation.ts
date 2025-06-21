@@ -78,7 +78,7 @@ export const useCardAnimation = ({
       filter: (i) => i > 0 ? `blur(${i * 0.8}px)` : "blur(0px)"
     });
 
-    // Calculate precise final positions in services section
+    // Calculate precise final positions in services section for 2x2 grid
     const gridSlots = servicesSection.querySelectorAll('[data-target-slot]');
     
     // Phase 1: Cards start separating with staggered timing (0-25% of scroll)
@@ -103,7 +103,7 @@ export const useCardAnimation = ({
       const slotRect = targetSlot.getBoundingClientRect();
       const servicesRect = servicesSection.getBoundingClientRect();
       
-      // Calculate position relative to services section
+      // Calculate position relative to services section for 2x2 grid
       const finalX = slotRect.left - servicesRect.left + slotRect.width / 2 - servicesRect.width / 2;
       const finalY = slotRect.top - servicesRect.top + slotRect.height / 2 - servicesRect.height / 2;
 
