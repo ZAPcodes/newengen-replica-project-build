@@ -26,11 +26,14 @@ export default {
 				foreground: 'hsl(var(--foreground))',
 				primary: {
 					DEFAULT: 'hsl(var(--primary))',
-					foreground: 'hsl(var(--primary-foreground))'
+					foreground: 'hsl(var(--primary-foreground))',
+					dark: '#0F0F0F',
+					medium: '#1a1a1a',
 				},
 				secondary: {
 					DEFAULT: 'hsl(var(--secondary))',
-					foreground: 'hsl(var(--secondary-foreground))'
+					foreground: 'hsl(var(--secondary-foreground))',
+					cyan: '#00FFC6',
 				},
 				destructive: {
 					DEFAULT: 'hsl(var(--destructive))',
@@ -42,7 +45,9 @@ export default {
 				},
 				accent: {
 					DEFAULT: 'hsl(var(--accent))',
-					foreground: 'hsl(var(--accent-foreground))'
+					foreground: 'hsl(var(--accent-foreground))',
+					blue: '#12C2E9',
+					rust: '#FF6B35',
 				},
 				popover: {
 					DEFAULT: 'hsl(var(--popover))',
@@ -62,12 +67,13 @@ export default {
 					border: 'hsl(var(--sidebar-border))',
 					ring: 'hsl(var(--sidebar-ring))'
 				},
-				// Neo-Mint Tech color scheme
-				'neo-mint': 'hsl(var(--neo-mint))',
-				'dark-bg': 'hsl(var(--dark-bg))',
-				'accent-blue': 'hsl(var(--accent-blue))',
-				'white-clean': 'hsl(var(--white-clean))',
-				'muted-gray': 'hsl(var(--muted-gray))'
+				// Neo-Mint Tech color scheme with proper contrast
+				'neo-mint': '#00FFC6',
+				'dark-bg': '#0F0F0F',
+				'accent-blue': '#12C2E9',
+				'white-clean': '#F9FAFB',
+				'muted-gray': '#A3A3A3',
+				'light-blue': '#E0F7FF',
 			},
 			borderRadius: {
 				lg: 'var(--radius)',
