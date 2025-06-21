@@ -62,12 +62,12 @@ export default {
 					border: 'hsl(var(--sidebar-border))',
 					ring: 'hsl(var(--sidebar-ring))'
 				},
-				// Professional color scheme using CSS variables
-				'primary-dark': 'hsl(var(--primary-dark))',
-				'primary-medium': 'hsl(var(--primary-medium))',
-				'accent-rust': 'hsl(var(--accent-rust))',
-				'secondary-cyan': 'hsl(var(--secondary-cyan))',
-				'light-blue': 'hsl(var(--light-blue))'
+				// Neo-Mint Tech color scheme
+				'neo-mint': 'hsl(var(--neo-mint))',
+				'dark-bg': 'hsl(var(--dark-bg))',
+				'accent-blue': 'hsl(var(--accent-blue))',
+				'white-clean': 'hsl(var(--white-clean))',
+				'muted-gray': 'hsl(var(--muted-gray))'
 			},
 			borderRadius: {
 				lg: 'var(--radius)',
@@ -104,8 +104,18 @@ export default {
 					'100%': { opacity: '1', transform: 'translateY(0)' }
 				},
 				'glow': {
-					'0%, 100%': { boxShadow: '0 0 20px rgba(15, 164, 175, 0.3)' },
-					'50%': { boxShadow: '0 0 40px rgba(15, 164, 175, 0.6)' }
+					'0%, 100%': { boxShadow: '0 0 20px rgba(0, 255, 198, 0.3)' },
+					'50%': { boxShadow: '0 0 40px rgba(0, 255, 198, 0.6)' }
+				},
+				'neo-pulse': {
+					'0%, 100%': { 
+						boxShadow: '0 0 20px rgba(0, 255, 198, 0.4)',
+						transform: 'scale(1)'
+					},
+					'50%': { 
+						boxShadow: '0 0 40px rgba(0, 255, 198, 0.8)',
+						transform: 'scale(1.02)'
+					}
 				}
 			},
 			animation: {
@@ -114,16 +124,23 @@ export default {
 				'fade-in': 'fade-in 0.6s ease-out',
 				'scale-in': 'scale-in 0.5s ease-out',
 				'slide-up': 'slide-up 0.6s ease-out',
-				'glow': 'glow 2s ease-in-out infinite'
+				'glow': 'glow 2s ease-in-out infinite',
+				'neo-pulse': 'neo-pulse 3s ease-in-out infinite'
 			},
 			fontFamily: {
 				'tech': ['Space Grotesk', 'sans-serif'],
 				'code': ['JetBrains Mono', 'monospace']
 			},
 			backgroundImage: {
-				'gradient-primary': 'linear-gradient(135deg, #003135 0%, #024950 100%)',
-				'gradient-secondary': 'linear-gradient(135deg, #0FA4AF 0%, #AFDDE5 100%)',
-				'gradient-accent': 'linear-gradient(135deg, #964734 0%, #0FA4AF 100%)'
+				'gradient-neo': 'linear-gradient(135deg, #00FFC6 0%, #12C2E9 100%)',
+				'gradient-dark': 'linear-gradient(135deg, #0F0F0F 0%, #1a1a1a 100%)',
+				'gradient-accent': 'linear-gradient(135deg, #12C2E9 0%, #00FFC6 100%)'
+			},
+			boxShadow: {
+				'neo-glow': '0 0 30px rgba(0, 255, 198, 0.3)',
+				'neo-glow-lg': '0 0 50px rgba(0, 255, 198, 0.5)',
+				'accent-glow': '0 0 30px rgba(18, 194, 233, 0.3)',
+				'accent-glow-lg': '0 0 50px rgba(18, 194, 233, 0.5)'
 			}
 		}
 	},

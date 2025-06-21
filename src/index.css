@@ -5,85 +5,85 @@
 /* Import tech-focused fonts */
 @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Inter:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@300;400;500;600;700&display=swap');
 
-/* Modern Professional Color Scheme */
+/* Neo-Mint Tech Color Scheme */
 
 @layer base {
   :root {
-    --background: 0 0% 100%;
-    --foreground: 180 100% 10%;
+    --background: 0 0% 98%;
+    --foreground: 0 0% 6%;
 
     --card: 0 0% 100%;
-    --card-foreground: 180 100% 10%;
+    --card-foreground: 0 0% 6%;
 
     --popover: 0 0% 100%;
-    --popover-foreground: 180 100% 10%;
+    --popover-foreground: 0 0% 6%;
 
-    --primary: 180 95% 15%;
-    --primary-foreground: 180 30% 85%;
+    --primary: 0 0% 6%;
+    --primary-foreground: 0 0% 98%;
 
-    --secondary: 180 100% 35%;
-    --secondary-foreground: 0 0% 100%;
+    --secondary: 165 100% 50%;
+    --secondary-foreground: 0 0% 6%;
 
-    --muted: 180 30% 85%;
-    --muted-foreground: 180 95% 15%;
+    --muted: 0 0% 64%;
+    --muted-foreground: 0 0% 45%;
 
-    --accent: 15 45% 35%;
-    --accent-foreground: 0 0% 100%;
+    --accent: 195 100% 50%;
+    --accent-foreground: 0 0% 98%;
 
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 210 40% 98%;
 
-    --border: 180 30% 85%;
-    --input: 180 30% 85%;
-    --ring: 180 100% 35%;
+    --border: 0 0% 90%;
+    --input: 0 0% 90%;
+    --ring: 165 100% 50%;
 
     --radius: 0.5rem;
 
-    --sidebar-background: 180 100% 10%;
-    --sidebar-foreground: 180 30% 85%;
-    --sidebar-primary: 180 100% 35%;
+    --sidebar-background: 0 0% 98%;
+    --sidebar-foreground: 0 0% 6%;
+    --sidebar-primary: 165 100% 50%;
     --sidebar-primary-foreground: 0 0% 98%;
-    --sidebar-accent: 180 95% 15%;
-    --sidebar-accent-foreground: 180 30% 85%;
-    --sidebar-border: 180 30% 85%;
-    --sidebar-ring: 180 100% 35%;
+    --sidebar-accent: 0 0% 96%;
+    --sidebar-accent-foreground: 0 0% 6%;
+    --sidebar-border: 0 0% 90%;
+    --sidebar-ring: 165 100% 50%;
 
-    /* Professional color variables */
-    --primary-dark: 180 100% 10%;    /* #003135 */
-    --primary-medium: 180 95% 15%;   /* #024950 */
-    --accent-rust: 15 45% 35%;       /* #964734 */
-    --secondary-cyan: 180 100% 35%;  /* #0FA4AF */
-    --light-blue: 180 30% 85%;       /* #AFDDE5 */
+    /* Neo-Mint Tech color variables */
+    --neo-mint: 165 100% 50%;        /* #00FFC6 */
+    --dark-bg: 0 0% 6%;              /* #0F0F0F */
+    --accent-blue: 195 100% 50%;     /* #12C2E9 */
+    --white-clean: 0 0% 98%;         /* #F9FAFB */
+    --muted-gray: 0 0% 64%;          /* #A3A3A3 */
   }
 
   .dark {
-    --background: 180 100% 10%;
-    --foreground: 180 30% 85%;
-    --card: 180 95% 15%;
-    --card-foreground: 180 30% 85%;
-    --popover: 180 95% 15%;
-    --popover-foreground: 180 30% 85%;
-    --primary: 180 100% 35%;
-    --primary-foreground: 180 100% 10%;
-    --secondary: 180 95% 15%;
-    --secondary-foreground: 180 30% 85%;
-    --muted: 180 95% 15%;
-    --muted-foreground: 180 30% 85%;
-    --accent: 15 45% 35%;
-    --accent-foreground: 0 0% 100%;
+    --background: 0 0% 6%;
+    --foreground: 0 0% 98%;
+    --card: 0 0% 6%;
+    --card-foreground: 0 0% 98%;
+    --popover: 0 0% 6%;
+    --popover-foreground: 0 0% 98%;
+    --primary: 0 0% 98%;
+    --primary-foreground: 0 0% 6%;
+    --secondary: 165 100% 50%;
+    --secondary-foreground: 0 0% 6%;
+    --muted: 0 0% 15%;
+    --muted-foreground: 0 0% 64%;
+    --accent: 195 100% 50%;
+    --accent-foreground: 0 0% 98%;
     --destructive: 0 62.8% 30.6%;
     --destructive-foreground: 210 40% 98%;
-    --border: 180 95% 15%;
-    --input: 180 95% 15%;
-    --ring: 180 100% 35%;
-    --sidebar-background: 180 100% 10%;
-    --sidebar-foreground: 180 30% 85%;
-    --sidebar-primary: 180 100% 35%;
-    --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 180 95% 15%;
-    --sidebar-accent-foreground: 180 30% 85%;
-    --sidebar-border: 180 95% 15%;
-    --sidebar-ring: 180 100% 35%;
+    --border: 0 0% 15%;
+    --input: 0 0% 15%;
+    --ring: 165 100% 50%;
+    --sidebar-background: 0 0% 6%;
+    --sidebar-foreground: 0 0% 98%;
+    --sidebar-primary: 165 100% 50%;
+    --sidebar-primary-foreground: 0 0% 6%;
+    --sidebar-accent: 0 0% 15%;
+    --sidebar-accent-foreground: 0 0% 98%;
+    --sidebar-border: 0 0% 15%;
+    --sidebar-ring: 165 100% 50%;
   }
 }
 
@@ -107,14 +107,14 @@
   }
 
   .text-gradient {
-    background: linear-gradient(135deg, hsl(var(--secondary-cyan)), hsl(var(--primary-medium)));
+    background: linear-gradient(135deg, hsl(var(--neo-mint)), hsl(var(--accent-blue)));
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
   }
 
   .text-gradient-alt {
-    background: linear-gradient(135deg, hsl(var(--accent-rust)), hsl(var(--secondary-cyan)));
+    background: linear-gradient(135deg, hsl(var(--accent-blue)), hsl(var(--neo-mint)));
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
@@ -135,10 +135,10 @@
 
 @keyframes glow-pulse {
   0%, 100% {
-    box-shadow: 0 0 20px hsla(var(--secondary-cyan), 0.3);
+    box-shadow: 0 0 20px hsla(var(--neo-mint), 0.3);
   }
   50% {
-    box-shadow: 0 0 40px hsla(var(--secondary-cyan), 0.6);
+    box-shadow: 0 0 40px hsla(var(--neo-mint), 0.6);
   }
 }
 
@@ -179,6 +179,16 @@
   }
   100% {
     background-position: 200% 0;
+  }
+}
+
+/* Infinite scroll animation for testimonials */
+@keyframes infinite-scroll {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(calc(-100% - 2rem));
   }
 }
 
@@ -236,7 +246,7 @@
   background: linear-gradient(
     90deg,
     transparent,
-    hsla(var(--secondary-cyan), 0.4),
+    hsla(var(--neo-mint), 0.4),
     transparent
   );
   background-size: 200% 100%;
@@ -251,43 +261,47 @@
   animation: card-settle 0.6s ease-out forwards;
 }
 
-/* Tech-focused utility classes with new color scheme */
+.animate-infinite-scroll {
+  animation: infinite-scroll 60s linear infinite;
+}
+
+/* Tech-focused utility classes with Neo-Mint theme */
 .tech-card {
-  @apply bg-primary-medium/90 backdrop-blur-sm border border-secondary-cyan/30 rounded-xl;
-  box-shadow: 0 8px 32px rgba(0, 49, 53, 0.3);
+  @apply bg-dark-bg/90 backdrop-blur-sm border border-neo-mint/30 rounded-xl;
+  box-shadow: 0 8px 32px rgba(15, 15, 15, 0.3);
 }
 
 .tech-button {
-  @apply bg-gradient-to-r from-secondary-cyan to-primary-medium hover:from-secondary-cyan/90 hover:to-primary-medium/90 text-white font-semibold px-6 py-3 rounded-lg transition-all duration-300 transform hover:scale-105;
-  box-shadow: 0 4px 15px rgba(15, 164, 175, 0.3);
+  @apply bg-gradient-to-r from-neo-mint to-accent-blue hover:from-neo-mint/90 hover:to-accent-blue/90 text-dark-bg font-semibold px-6 py-3 rounded-lg transition-all duration-300 transform hover:scale-105;
+  box-shadow: 0 4px 15px rgba(0, 255, 198, 0.3);
 }
 
 .tech-button:hover {
-  box-shadow: 0 6px 20px rgba(15, 164, 175, 0.4);
+  box-shadow: 0 6px 20px rgba(0, 255, 198, 0.4);
 }
 
 .tech-button-accent {
-  @apply bg-gradient-to-r from-accent-rust to-accent-rust/80 hover:from-accent-rust/90 hover:to-accent-rust/70 text-white font-semibold px-6 py-3 rounded-lg transition-all duration-300 transform hover:scale-105;
-  box-shadow: 0 4px 15px rgba(150, 71, 52, 0.3);
+  @apply bg-gradient-to-r from-accent-blue to-accent-blue/80 hover:from-accent-blue/90 hover:to-accent-blue/70 text-white font-semibold px-6 py-3 rounded-lg transition-all duration-300 transform hover:scale-105;
+  box-shadow: 0 4px 15px rgba(18, 194, 233, 0.3);
 }
 
 .code-block {
-  @apply bg-primary-dark border border-primary-medium rounded-lg p-4 font-code text-sm;
-  background-image: linear-gradient(45deg, transparent 25%, rgba(15, 164, 175, 0.02) 25%, rgba(15, 164, 175, 0.02) 50%, transparent 50%, transparent 75%, rgba(15, 164, 175, 0.02) 75%);
+  @apply bg-dark-bg border border-neo-mint/30 rounded-lg p-4 font-code text-sm;
+  background-image: linear-gradient(45deg, transparent 25%, rgba(0, 255, 198, 0.02) 25%, rgba(0, 255, 198, 0.02) 50%, transparent 50%, transparent 75%, rgba(0, 255, 198, 0.02) 75%);
   background-size: 20px 20px;
-  color: #AFDDE5;
+  color: #F9FAFB;
 }
 
 .tech-grid-pattern {
   background-image: 
-    linear-gradient(rgba(15, 164, 175, 0.1) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(15, 164, 175, 0.1) 1px, transparent 1px);
+    linear-gradient(rgba(0, 255, 198, 0.1) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0, 255, 198, 0.1) 1px, transparent 1px);
   background-size: 50px 50px;
 }
 
-/* Professional cyber-themed backgrounds */
+/* Neo-Mint cyber-themed backgrounds */
 .cyber-bg {
-  background: linear-gradient(135deg, #003135 0%, #024950 50%, #0FA4AF 100%);
+  background: linear-gradient(135deg, #0F0F0F 0%, #1a1a1a 50%, #0F0F0F 100%);
   position: relative;
   overflow: hidden;
 }
@@ -300,8 +314,8 @@
   right: 0;
   bottom: 0;
   background-image: 
-    radial-gradient(circle at 25% 25%, rgba(15, 164, 175, 0.1) 0%, transparent 50%),
-    radial-gradient(circle at 75% 75%, rgba(150, 71, 52, 0.1) 0%, transparent 50%);
+    radial-gradient(circle at 25% 25%, rgba(0, 255, 198, 0.1) 0%, transparent 50%),
+    radial-gradient(circle at 75% 75%, rgba(18, 194, 233, 0.1) 0%, transparent 50%);
   pointer-events: none;
 }
 
@@ -319,7 +333,7 @@
   left: -100%;
   width: 100%;
   height: 100%;
-  background: linear-gradient(90deg, transparent, rgba(15, 164, 175, 0.2), transparent);
+  background: linear-gradient(90deg, transparent, rgba(0, 255, 198, 0.2), transparent);
   transition: left 0.5s;
 }
 
@@ -329,7 +343,7 @@
 
 .tech-hover-effect:hover {
   transform: translateY(-8px);
-  box-shadow: 0 20px 40px rgba(0, 49, 53, 0.4);
+  box-shadow: 0 20px 40px rgba(15, 15, 15, 0.4);
 }
 
 /* Staggered animation delays */
@@ -342,13 +356,13 @@
 
 /* Terminal-style elements */
 .terminal {
-  @apply bg-primary-dark text-secondary-cyan font-code rounded-lg border border-primary-medium;
+  @apply bg-dark-bg text-neo-mint font-code rounded-lg border border-neo-mint/30;
   box-shadow: inset 0 0 20px rgba(0, 0, 0, 0.5);
 }
 
 .terminal::before {
   content: '$ ';
-  color: #0FA4AF;
+  color: #00FFC6;
 }
 
 /* Professional fade-in animation */
@@ -392,45 +406,49 @@
   transform: scale(1.05);
 }
 
-/* Professional gradient backgrounds */
+/* Neo-Mint gradient backgrounds */
 .gradient-primary {
-  background: linear-gradient(135deg, #003135 0%, #024950 100%);
+  background: linear-gradient(135deg, #0F0F0F 0%, #1a1a1a 100%);
 }
 
 .gradient-secondary {
-  background: linear-gradient(135deg, #0FA4AF 0%, #AFDDE5 100%);
+  background: linear-gradient(135deg, #00FFC6 0%, #12C2E9 100%);
 }
 
 .gradient-accent {
-  background: linear-gradient(135deg, #964734 0%, #0FA4AF 100%);
+  background: linear-gradient(135deg, #12C2E9 0%, #00FFC6 100%);
 }
 
 /* Text shadow for better readability */
 .text-shadow {
-  text-shadow: 0 2px 4px rgba(0, 49, 53, 0.3);
+  text-shadow: 0 2px 4px rgba(15, 15, 15, 0.3);
 }
 
-/* Professional button variants */
+/* Neo-Mint button variants */
 .btn-primary {
-  @apply bg-primary-medium hover:bg-primary-dark text-white font-semibold py-3 px-6 rounded-lg transition-all duration-300 shadow-lg hover:shadow-xl;
+  @apply bg-neo-mint hover:bg-neo-mint/90 text-dark-bg font-semibold py-3 px-6 rounded-lg transition-all duration-300 shadow-lg hover:shadow-xl;
 }
 
 .btn-secondary {
-  @apply bg-secondary-cyan hover:bg-secondary-cyan/90 text-white font-semibold py-3 px-6 rounded-lg transition-all duration-300 shadow-lg hover:shadow-xl;
+  @apply bg-accent-blue hover:bg-accent-blue/90 text-white font-semibold py-3 px-6 rounded-lg transition-all duration-300 shadow-lg hover:shadow-xl;
 }
 
 .btn-accent {
-  @apply bg-accent-rust hover:bg-accent-rust/90 text-white font-semibold py-3 px-6 rounded-lg transition-all duration-300 shadow-lg hover:shadow-xl;
+  @apply bg-dark-bg hover:bg-dark-bg/90 text-neo-mint border border-neo-mint font-semibold py-3 px-6 rounded-lg transition-all duration-300;
 }
 
 .btn-outline {
-  @apply border-2 border-primary-medium text-primary-medium hover:bg-primary-medium hover:text-white font-semibold py-3 px-6 rounded-lg transition-all duration-300;
+  @apply border-2 border-neo-mint text-neo-mint hover:bg-neo-mint hover:text-dark-bg font-semibold py-3 px-6 rounded-lg transition-all duration-300;
 }
 
 /* Responsive design utilities */
 @media (max-width: 768px) {
   .cyber-bg {
-    background: linear-gradient(180deg, #003135 0%, #024950 50%, #0FA4AF 100%);
+    background: linear-gradient(180deg, #0F0F0F 0%, #1a1a1a 50%, #0F0F0F 100%);
+  }
+  
+  .animate-infinite-scroll {
+    animation: infinite-scroll 40s linear infinite;
   }
 }
 
@@ -442,6 +460,7 @@
   .animate-scale-in,
   .animate-card-fly-in,
   .animate-card-settle,
+  .animate-infinite-scroll,
   .tech-hover-effect,
   .hover-scale {
     animation: none;
@@ -453,7 +472,7 @@
 @media (prefers-contrast: high) {
   .tech-card {
     border-width: 2px;
-    border-color: #0FA4AF;
+    border-color: #00FFC6;
   }
   
   .text-gradient,
@@ -462,7 +481,7 @@
     -webkit-background-clip: unset;
     -webkit-text-fill-color: unset;
     background-clip: unset;
-    color: #003135;
+    color: #00FFC6;
   }
 }
 
@@ -492,7 +511,7 @@ html {
   box-shadow: 0 35px 60px -12px rgba(0, 0, 0, 0.25);
 }
 
-/* Glowing border effect */
+/* Neo-Mint glowing border effect */
 .glow-border {
   position: relative;
 }
@@ -501,7 +520,7 @@ html {
   content: '';
   position: absolute;
   inset: -2px;
-  background: linear-gradient(45deg, #0FA4AF, #964734, #0FA4AF);
+  background: linear-gradient(45deg, #00FFC6, #12C2E9, #00FFC6);
   border-radius: inherit;
   z-index: -1;
   opacity: 0;
@@ -510,4 +529,21 @@ html {
 
 .glow-border:hover::before {
   opacity: 1;
+}
+
+/* Neo-Mint specific utilities */
+.neo-mint-glow {
+  box-shadow: 0 0 30px rgba(0, 255, 198, 0.3);
+}
+
+.neo-mint-glow:hover {
+  box-shadow: 0 0 50px rgba(0, 255, 198, 0.5);
+}
+
+.accent-blue-glow {
+  box-shadow: 0 0 30px rgba(18, 194, 233, 0.3);
+}
+
+.accent-blue-glow:hover {
+  box-shadow: 0 0 50px rgba(18, 194, 233, 0.5);
 }
