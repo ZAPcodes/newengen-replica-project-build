@@ -1,15 +1,13 @@
 import { Button } from "@/components/ui/button";
 import { Terminal, Code, Database, Shield, Cpu } from "lucide-react";
 import React, { useRef, useEffect } from "react";
-import AnimatedCard from "./AnimatedCard";
 import AnimatedText from "./AnimatedText";
 import MagneticButton from "./MagneticButton";
 import TiltCard from "./TiltCard";
 import NeonGlowText from "./NeonGlowText";
 import FloatingParticles from "./FloatingParticles";
-import { useCardAnimation, useResponsiveCardAnimation } from "@/hooks/useCardAnimation";
 
-// Card data for the animated cards
+// Card data for the static cards
 const cardData = [
   {
     title: "Cybersecurity",
@@ -49,56 +47,15 @@ const cardData = [
   }
 ];
 
-// Animated Cards Container Component
-function AnimatedCardsContainer() {
-  const heroContainerRef = useRef<HTMLDivElement>(null);
-  const serviceContainerRef = useRef<HTMLDivElement>(null);
-  const cardRefs = useRef<HTMLDivElement[]>([]);
-
-  // Initialize GSAP animations
-  useCardAnimation({ 
-    heroContainerRef, 
-    serviceContainerRef, 
-    cardRefs 
-  });
-  
-  useResponsiveCardAnimation(cardRefs);
-
-  useEffect(() => {
-    // Find services section after component mounts
-    const servicesSection = document.getElementById('services');
-    if (servicesSection) {
-      serviceContainerRef.current = servicesSection as HTMLDivElement;
-    }
-  }, []);
-
-  return (
-    <div 
-      ref={heroContainerRef}
-      className="relative w-full h-96 flex items-center justify-center"
-      style={{ perspective: '1000px' }}
-    >
-      {/* Floating cards that will animate to services section */}
-      {cardData.map((card, index) => (
-        <TiltCard key={card.title} className="absolute">
-          <AnimatedCard
-            ref={(el) => {
-              if (el) cardRefs.current[index] = el;
-            }}
-            {...card}
-            index={index}
-            className="hover-magnetic"
-          />
-        </TiltCard>
-      ))}
-      
-      {/* Visual indicator for the animation */}
-      <div className="absolute inset-0 pointer-events-none">
-        <div className="w-full h-full bg-gradient-to-b from-transparent via-secondary-cyan/5 to-transparent rounded-3xl animate-pulse" />
-      </div>
-    </div>
-  );
-}
+const getColorClasses = (color: string) => {
+  const colors = {
+    cyan: "from-secondary-cyan to-secondary-cyan/80 text-secondary-cyan border-secondary-cyan/30",
+    purple: "from-accent-rust to-accent-rust/80 text-accent-rust border-accent-rust/30",
+    green: "from-secondary-cyan to-primary-medium text-secondary-cyan border-secondary-cyan/30",
+    blue: "from-primary-medium to-primary-dark text-light-blue border-light-blue/30"
+  };
+  return colors[color as keyof typeof colors];
+};
 
 const Hero = () => {
   return (
@@ -218,9 +175,73 @@ const Hero = () => {
             </div>
           </div>
 
+          {/* Static Cards Display */}
           <div className="relative animate-slide-up-stagger stagger-3">
-            {/* Main animated cards container */}
-            <AnimatedCardsContainer />
+            <div className="grid grid-cols-2 gap-6 max-w-2xl mx-auto">
+              {cardData.map((card, index) => {
+                const colorClasses = getColorClasses(card.color);
+                
+                return (
+                  <TiltCard key={card.title}>
+                    <div 
+                      className="w-full h-80 bg-primary-dark/90 backdrop-blur-sm border border-primary-medium/50 rounded-2xl overflow-hidden shadow-2xl hover-magnetic animate-fade-in"
+                      style={{ animationDelay: `${index * 0.2}s` }}
+                    >
+                      {/* Card Header */}
+                      <div className="p-4 border-b border-primary-medium/50">
+                        <div className="flex items-center justify-between mb-3">
+                          <div className={`w-10 h-10 bg-gradient-to-br ${colorClasses.split(' ')[0]} ${colorClasses.split(' ')[1]} rounded-xl flex items-center justify-center shadow-lg`}>
+                            <card.icon className="w-5 h-5 text-white" />
+                          </div>
+                          <span className={`px-2 py-1 bg-primary-medium border ${colorClasses.split(' ')[3]} rounded-full text-xs font-mono ${colorClasses.split(' ')[2]}`}>
+                            {card.duration}
+                          </span>
+                        </div>
+                        <h3 className="text-lg font-bold text-white mb-1">{card.title}</h3>
+                        <p className="text-light-blue text-xs">{card.description}</p>
+                      </div>
+
+                      {/* Card Image */}
+                      <div className="h-32 relative overflow-hidden">
+                        <img
+                          src={card.image}
+                          alt={card.title}
+                          className="w-full h-full object-cover"
+                        />
+                        <div className="absolute inset-0 bg-gradient-to-t from-primary-dark/80 to-transparent"></div>
+                      </div>
+
+                      {/* Card Footer */}
+                      <div className="p-4">
+                        <div className="space-y-2">
+                          <div className="text-xs font-mono text-light-blue/70 uppercase tracking-wider">Key Skills</div>
+                          <div className="flex flex-wrap gap-1">
+                            {card.skills.slice(0, 2).map((skill, idx) => (
+                              <span 
+                                key={idx} 
+                                className="px-2 py-1 bg-primary-medium text-light-blue text-xs rounded border border-secondary-cyan/30 hover:bg-secondary-cyan/10 transition-colors duration-200"
+                              >
+                                {skill}
+                              </span>
+                            ))}
+                            {card.skills.length > 2 && (
+                              <span className="px-2 py-1 bg-primary-medium text-light-blue text-xs rounded border border-secondary-cyan/30">
+                                +{card.skills.length - 2}
+                              </span>
+                            )}
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </TiltCard>
+                );
+              })}
+            </div>
+            
+            {/* Visual indicator */}
+            <div className="absolute inset-0 pointer-events-none">
+              <div className="w-full h-full bg-gradient-to-b from-transparent via-secondary-cyan/5 to-transparent rounded-3xl animate-pulse" />
+            </div>
           </div>
         </div>
       </div>
