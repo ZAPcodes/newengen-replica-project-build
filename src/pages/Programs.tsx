@@ -21,8 +21,28 @@ import {
 import Header from "@/components/Header";
 import { FaWhatsapp } from 'react-icons/fa';
 
-// Enhanced program data with high-quality images and detailed information
-const programsData = [
+// Program data with proper TypeScript typing
+interface Program {
+  id: number;
+  title: string;
+  subtitle: string;
+  description: string;
+  image: string;
+  icon: React.ComponentType<any>;
+  duration: string;
+  level: string;
+  students: string;
+  rating: number;
+  price: string;
+  originalPrice: string;
+  skills: string[];
+  highlights: string[];
+  color: string;
+  bgGradient: string;
+  category: string;
+}
+
+const programsData: Program[] = [
   {
     id: 1,
     title: "Cybersecurity & Ethical Hacking",
@@ -139,8 +159,13 @@ const programsData = [
   }
 ];
 
-// Program Card Component
-const ProgramCard = ({ program, index }) => {
+// Program Card Component with proper typing
+interface ProgramCardProps {
+  program: Program;
+  index: number;
+}
+
+const ProgramCard: React.FC<ProgramCardProps> = ({ program, index }) => {
   const [isHovered, setIsHovered] = useState(false);
   const cardRef = useRef(null);
   const isInView = useInView(cardRef, { once: true, margin: "-100px" });
@@ -283,7 +308,7 @@ const ProgramCard = ({ program, index }) => {
 };
 
 // Stats Component
-const StatsSection = () => {
+const StatsSection: React.FC = () => {
   const stats = [
     { icon: Users, value: "10,000+", label: "Students Enrolled" },
     { icon: Award, value: "95%", label: "Success Rate" },
@@ -316,7 +341,7 @@ const StatsSection = () => {
   );
 };
 
-const Programs = () => {
+const Programs: React.FC = () => {
   const [selectedCategory, setSelectedCategory] = useState("All");
   const heroRef = useRef(null);
   const isHeroInView = useInView(heroRef, { once: true });
