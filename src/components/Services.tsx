@@ -100,6 +100,7 @@ const Services = () => {
       className="py-20 cyber-bg min-h-screen relative"
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        {/* Header Section */}
         <div className="text-center mb-16">
           <div className="inline-flex items-center space-x-2 bg-primary-dark/60 backdrop-blur-sm border border-secondary-cyan/30 rounded-full px-4 py-2 mb-6 animate-slide-up-stagger hover-magnetic">
             <Cpu className="w-4 h-4 text-secondary-cyan" />
@@ -123,76 +124,78 @@ const Services = () => {
           />
         </div>
 
-        {/* Services Grid - 2x2 Layout for Cards */}
-        <div 
-          ref={gridContainerRef}
-          className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto min-h-[800px] items-center justify-items-center mb-16"
-        >
-          {programs.map((program, index) => {
-            const colorClasses = getColorClasses(program.color);
-            
-            return (
-              <div 
-                key={index}
-                className="w-80 h-96 flex items-center justify-center" 
-                data-target-slot={index}
-              >
-                {/* Show static cards if animation cards haven't landed */}
-                {!cardsLanded && (
-                  <TiltCard>
-                    <div 
-                      className="w-80 h-96 bg-primary-dark/90 backdrop-blur-sm border border-primary-medium/50 rounded-2xl overflow-hidden shadow-2xl hover-magnetic animate-fade-in"
-                      style={{ animationDelay: `${index * 0.2}s` }}
-                    >
-                      {/* Card Header */}
-                      <div className="p-6 border-b border-primary-medium/50">
-                        <div className="flex items-center justify-between mb-4">
-                          <div className={`w-12 h-12 bg-gradient-to-br ${colorClasses.split(' ')[0]} ${colorClasses.split(' ')[1]} rounded-xl flex items-center justify-center shadow-lg`}>
-                            <program.icon className="w-6 h-6 text-white" />
+        {/* Services Grid - 2x2 Layout positioned between header and stats */}
+        <div className="flex flex-col items-center justify-center mb-20">
+          <div 
+            ref={gridContainerRef}
+            className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto"
+          >
+            {programs.map((program, index) => {
+              const colorClasses = getColorClasses(program.color);
+              
+              return (
+                <div 
+                  key={index}
+                  className="flex items-center justify-center" 
+                  data-target-slot={index}
+                >
+                  {/* Show static cards if animation cards haven't landed */}
+                  {!cardsLanded && (
+                    <TiltCard>
+                      <div 
+                        className="w-80 h-96 bg-primary-dark/90 backdrop-blur-sm border border-primary-medium/50 rounded-2xl overflow-hidden shadow-2xl hover-magnetic animate-fade-in"
+                        style={{ animationDelay: `${index * 0.2}s` }}
+                      >
+                        {/* Card Header */}
+                        <div className="p-6 border-b border-primary-medium/50">
+                          <div className="flex items-center justify-between mb-4">
+                            <div className={`w-12 h-12 bg-gradient-to-br ${colorClasses.split(' ')[0]} ${colorClasses.split(' ')[1]} rounded-xl flex items-center justify-center shadow-lg`}>
+                              <program.icon className="w-6 h-6 text-white" />
+                            </div>
+                            <span className={`px-3 py-1 bg-primary-medium border ${colorClasses.split(' ')[3]} rounded-full text-xs font-mono ${colorClasses.split(' ')[2]}`}>
+                              {program.duration}
+                            </span>
                           </div>
-                          <span className={`px-3 py-1 bg-primary-medium border ${colorClasses.split(' ')[3]} rounded-full text-xs font-mono ${colorClasses.split(' ')[2]}`}>
-                            {program.duration}
-                          </span>
+                          <h3 className="text-xl font-bold text-white mb-2">{program.title}</h3>
+                          <p className="text-light-blue text-sm">{program.description}</p>
                         </div>
-                        <h3 className="text-xl font-bold text-white mb-2">{program.title}</h3>
-                        <p className="text-light-blue text-sm">{program.description}</p>
-                      </div>
 
-                      {/* Card Image */}
-                      <div className="h-40 relative overflow-hidden">
-                        <img
-                          src={program.image}
-                          alt={program.title}
-                          className="w-full h-full object-cover"
-                        />
-                        <div className="absolute inset-0 bg-gradient-to-t from-primary-dark/80 to-transparent"></div>
-                      </div>
+                        {/* Card Image */}
+                        <div className="h-40 relative overflow-hidden">
+                          <img
+                            src={program.image}
+                            alt={program.title}
+                            className="w-full h-full object-cover"
+                          />
+                          <div className="absolute inset-0 bg-gradient-to-t from-primary-dark/80 to-transparent"></div>
+                        </div>
 
-                      {/* Card Footer */}
-                      <div className="p-6">
-                        <div className="space-y-3">
-                          <div className="text-xs font-mono text-light-blue/70 uppercase tracking-wider">Key Skills</div>
-                          <div className="flex flex-wrap gap-2">
-                            {program.skills.map((skill, idx) => (
-                              <span 
-                                key={idx} 
-                                className="px-2 py-1 bg-primary-medium text-light-blue text-xs rounded border border-secondary-cyan/30 hover:bg-secondary-cyan/10 transition-colors duration-200"
-                              >
-                                {skill}
-                              </span>
-                            ))}
+                        {/* Card Footer */}
+                        <div className="p-6">
+                          <div className="space-y-3">
+                            <div className="text-xs font-mono text-light-blue/70 uppercase tracking-wider">Key Skills</div>
+                            <div className="flex flex-wrap gap-2">
+                              {program.skills.map((skill, idx) => (
+                                <span 
+                                  key={idx} 
+                                  className="px-2 py-1 bg-primary-medium text-light-blue text-xs rounded border border-secondary-cyan/30 hover:bg-secondary-cyan/10 transition-colors duration-200"
+                                >
+                                  {skill}
+                                </span>
+                              ))}
+                            </div>
                           </div>
                         </div>
                       </div>
-                    </div>
-                  </TiltCard>
-                )}
-              </div>
-            );
-          })}
+                    </TiltCard>
+                  )}
+                </div>
+              );
+            })}
+          </div>
         </div>
 
-        {/* Stats section */}
+        {/* Stats section positioned below the grid */}
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8 max-w-4xl mx-auto mb-16">
           {[
             { label: "Students Placed", value: "500+", color: "cyan" },
