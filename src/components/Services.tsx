@@ -1,4 +1,3 @@
-
 import { useEffect, useState, useRef } from "react";
 import { Shield, Code, Database, BarChart, Cpu, Lock } from "lucide-react";
 import { gsap } from 'gsap';
@@ -79,13 +78,15 @@ const Services = () => {
 
   const getColorClasses = (color: string) => {
     const colors = {
-      cyan: "from-cyan-500 to-cyan-600 text-cyan-400 border-cyan-500/30",
-      purple: "from-purple-500 to-purple-600 text-purple-400 border-purple-500/30",
-      green: "from-green-500 to-green-600 text-green-400 border-green-500/30",
-      blue: "from-blue-500 to-blue-600 text-blue-400 border-blue-500/30"
+      cyan: "from-secondary-cyan to-secondary-cyan/80 text-secondary-cyan border-secondary-cyan/30",
+      purple: "from-accent-rust to-accent-rust/80 text-accent-rust border-accent-rust/30",
+      green: "from-secondary-cyan to-primary-medium text-secondary-cyan border-secondary-cyan/30",
+      blue: "from-primary-medium to-primary-dark text-light-blue border-light-blue/30"
     };
     return colors[color as keyof typeof colors];
-  };  return (
+  };
+
+  return (
     <section 
       id="services" 
       ref={servicesSectionRef}
@@ -93,39 +94,47 @@ const Services = () => {
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
-          <div className="inline-flex items-center space-x-2 bg-gray-900/60 backdrop-blur-sm border border-cyan-500/30 rounded-full px-4 py-2 mb-6 animate-slide-up-stagger">
-            <Cpu className="w-4 h-4 text-cyan-400" />
-            <span className="text-sm font-code text-cyan-400">INTERNSHIP PROGRAMS</span>
+          <div className="inline-flex items-center space-x-2 bg-primary-dark/60 backdrop-blur-sm border border-secondary-cyan/30 rounded-full px-4 py-2 mb-6 animate-slide-up-stagger">
+            <Cpu className="w-4 h-4 text-secondary-cyan" />
+            <span className="text-sm font-code text-secondary-cyan">INTERNSHIP PROGRAMS</span>
           </div>
           
-          <h2 className="text-4xl sm:text-5xl font-tech font-bold text-white mb-8 animate-slide-up-stagger stagger-1">
+          <h2 className="text-4xl sm:text-5xl font-tech font-bold text-white mb-8 animate-slide-up-stagger stagger-1 text-shadow">
             Master In-Demand{" "}
             <span className="text-gradient">Tech Skills</span>
           </h2>
           
-          <p className="text-xl text-gray-300 max-w-3xl mx-auto leading-relaxed animate-slide-up-stagger stagger-2">
+          <p className="text-xl text-light-blue max-w-3xl mx-auto leading-relaxed animate-slide-up-stagger stagger-2">
             Join our intensive internship programs designed by industry experts. 
             Gain hands-on experience with real projects and get hired by top tech companies.
           </p>
-        </div>        {/* Services Grid - Target for flying cards with precise positioning */}
+        </div>
+
+        {/* Services Grid - Target for flying cards with precise positioning */}
         <div 
           ref={gridContainerRef}
-          className="grid grid-cols-2 lg:grid-cols-4 gap-6 max-w-6xl mx-auto min-h-[500px] items-center justify-items-center"
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 max-w-6xl mx-auto min-h-[500px] items-center justify-items-center"
         >
           {/* Precise target slots for each card matching reference layout */}
-          <div className="w-80 h-96 opacity-0 flex items-center justify-center" data-target-slot="0">
-            <div className="w-full h-full bg-gray-800/10 rounded-2xl border border-gray-700/20"></div>
-          </div>
-          <div className="w-80 h-96 opacity-0 flex items-center justify-center" data-target-slot="1">
-            <div className="w-full h-full bg-gray-800/10 rounded-2xl border border-gray-700/20"></div>
-          </div>
-          <div className="w-80 h-96 opacity-0 flex items-center justify-center" data-target-slot="2">
-            <div className="w-full h-full bg-gray-800/10 rounded-2xl border border-gray-700/20"></div>
-          </div>
-          <div className="w-80 h-96 opacity-0 flex items-center justify-center" data-target-slot="3">
-            <div className="w-full h-full bg-gray-800/10 rounded-2xl border border-gray-700/20"></div>
-          </div>
-        </div>        {/* Stats section */}
+          {programs.map((program, index) => (
+            <div 
+              key={index}
+              className="w-80 h-96 flex items-center justify-center" 
+              data-target-slot={index}
+            >
+              {/* Placeholder that will be replaced by flying cards */}
+              <div className="w-full h-full bg-primary-medium/20 rounded-2xl border border-secondary-cyan/20 flex items-center justify-center opacity-30">
+                <div className="text-center">
+                  <program.icon className="w-12 h-12 text-secondary-cyan/50 mx-auto mb-4" />
+                  <h3 className="text-lg font-semibold text-light-blue/50">{program.title}</h3>
+                  <p className="text-sm text-light-blue/30 mt-2">{program.description}</p>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+
+        {/* Stats section */}
         <div className="mt-20 grid grid-cols-1 md:grid-cols-4 gap-8 max-w-4xl mx-auto">
           {[
             { label: "Students Placed", value: "500+", color: "cyan" },
@@ -135,15 +144,22 @@ const Services = () => {
           ].map((stat, index) => (
             <div 
               key={stat.label} 
-              className="text-center tech-card p-6 animate-slide-up-stagger"
+              className="text-center tech-card p-6 animate-slide-up-stagger hover:shadow-2xl transition-all duration-300"
               style={{ animationDelay: `${index * 0.1}s` }}
             >
               <div className={`text-3xl font-bold font-code mb-2 ${getColorClasses(stat.color).split(' ')[2]}`}>
                 {stat.value}
               </div>
-              <div className="text-gray-400 text-sm">{stat.label}</div>
+              <div className="text-light-blue text-sm">{stat.label}</div>
             </div>
           ))}
+        </div>
+
+        {/* Call to Action */}
+        <div className="text-center mt-16">
+          <button className="tech-button-accent text-lg px-8 py-4 shadow-2xl hover:shadow-3xl transform hover:scale-105 transition-all duration-300">
+            Explore All Programs
+          </button>
         </div>
       </div>
     </section>
