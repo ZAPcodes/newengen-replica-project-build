@@ -1,6 +1,97 @@
-
 import { Button } from "@/components/ui/button";
 import { Terminal, Code, Database, Shield, Cpu } from "lucide-react";
+import React, { useRef, useEffect } from "react";
+import AnimatedCard from "./AnimatedCard";
+import { useCardAnimation, useResponsiveCardAnimation } from "@/hooks/useCardAnimation";
+
+// Card data for the animated cards
+const cardData = [
+  {
+    title: "Cybersecurity",
+    icon: Shield,
+    description: "Ethical Hacking & Security Analysis",
+    color: "cyan",
+    skills: ["Penetration Testing", "Network Security", "Incident Response"],
+    duration: "12 weeks",
+    image: "/public/lovable-uploads/212e75b6-821d-4073-aba6-93892cbde78c.png"
+  },
+  {
+    title: "Full Stack Development",
+    icon: Code,
+    description: "Modern Web & Mobile Applications",
+    color: "purple",
+    skills: ["React/Next.js", "Node.js", "Cloud Deployment"],
+    duration: "16 weeks",
+    image: "/public/lovable-uploads/d93bec81-b724-41cb-b278-f9cad0ccf892.png"
+  },
+  {
+    title: "Data Science",
+    icon: Database,
+    description: "AI/ML & Predictive Analytics",
+    color: "green",
+    skills: ["Python/R", "Machine Learning", "Deep Learning"],
+    duration: "14 weeks",
+    image: "/public/lovable-uploads/development.jpg"
+  },
+  {
+    title: "Data Analysis",
+    icon: Cpu,
+    description: "Business Intelligence & Visualization",
+    color: "blue",
+    skills: ["SQL", "Power BI", "Statistical Analysis"],
+    duration: "10 weeks",
+    image: "/public/favicon.ico"
+  }
+];
+
+// Animated Cards Container Component
+function AnimatedCardsContainer() {
+  const heroContainerRef = useRef<HTMLDivElement>(null);
+  const serviceContainerRef = useRef<HTMLDivElement>(null);
+  const cardRefs = useRef<HTMLDivElement[]>([]);
+
+  // Initialize GSAP animations
+  useCardAnimation({ 
+    heroContainerRef, 
+    serviceContainerRef, 
+    cardRefs 
+  });
+  
+  useResponsiveCardAnimation(cardRefs);
+
+  useEffect(() => {
+    // Find services section after component mounts
+    const servicesSection = document.getElementById('services');
+    if (servicesSection) {
+      serviceContainerRef.current = servicesSection as HTMLDivElement;
+    }
+  }, []);
+
+  return (
+    <div 
+      ref={heroContainerRef}
+      className="relative w-full h-96 flex items-center justify-center"
+      style={{ perspective: '1000px' }}
+    >
+      {/* Floating cards that will animate to services section */}
+      {cardData.map((card, index) => (
+        <AnimatedCard
+          key={card.title}
+          ref={(el) => {
+            if (el) cardRefs.current[index] = el;
+          }}
+          {...card}
+          index={index}
+          className="absolute"
+        />
+      ))}
+      
+      {/* Visual indicator for the animation */}      <div className="absolute inset-0 pointer-events-none">
+        <div className="w-full h-full bg-gradient-to-b from-transparent via-cyan-500/5 to-transparent rounded-3xl animate-pulse" />
+      </div>
+    </div>
+  );
+}
 
 const Hero = () => {
   return (
@@ -92,55 +183,8 @@ const Hero = () => {
           </div>
 
           <div className="relative animate-slide-up-stagger stagger-3">
-            {/* Main image container with tech overlay */}
-            <div className="relative">
-              <div className="tech-card p-8 tech-hover-effect">
-                <div className="bg-gradient-to-br from-cyan-500/20 to-purple-500/20 rounded-2xl overflow-hidden aspect-square relative">
-                  <img
-                    src="/lovable-uploads/212e75b6-821d-4073-aba6-93892cbde78c.png"
-                    alt="Tech professional coding"
-                    className="w-full h-full object-cover"
-                  />
-                  
-                  {/* Tech overlay elements */}
-                  <div className="absolute top-4 right-4 bg-black/80 backdrop-blur-sm rounded-lg px-3 py-1">
-                    <div className="flex items-center space-x-2">
-                      <div className="w-2 h-2 bg-green-400 rounded-full animate-pulse"></div>
-                      <span className="text-green-400 text-xs font-code">ACTIVE</span>
-                    </div>
-                  </div>
-                  
-                  <div className="absolute bottom-4 left-4 bg-black/80 backdrop-blur-sm rounded-lg p-3">
-                    <div className="font-code text-xs text-cyan-400">
-                      <div>Cybersecurity: <span className="text-green-400">✓ Active</span></div>
-                      <div>Full Stack: <span className="text-purple-400">✓ Learning</span></div>
-                      <div>Data Science: <span className="text-blue-400">✓ Enrolled</span></div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              {/* Floating tech cards */}
-              <div className="absolute -top-8 -left-8 tech-card p-4 animate-float-in stagger-4">
-                <div className="flex items-center space-x-2">
-                  <Shield className="w-6 h-6 text-cyan-400" />
-                  <div>
-                    <div className="text-sm font-semibold text-cyan-400">Cybersecurity</div>
-                    <div className="text-xs text-gray-400">12 weeks</div>
-                  </div>
-                </div>
-              </div>
-              
-              <div className="absolute -bottom-8 -right-8 tech-card p-4 animate-float-in stagger-5">
-                <div className="flex items-center space-x-2">
-                  <Database className="w-6 h-6 text-green-400" />
-                  <div>
-                    <div className="text-sm font-semibold text-green-400">Data Science</div>
-                    <div className="text-xs text-gray-400">16 weeks</div>
-                  </div>
-                </div>
-              </div>
-            </div>
+            {/* Main animated cards container */}
+            <AnimatedCardsContainer />
           </div>
         </div>
       </div>

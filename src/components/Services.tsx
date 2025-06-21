@@ -1,15 +1,37 @@
 
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import { Shield, Code, Database, BarChart, Cpu, Lock } from "lucide-react";
+import { gsap } from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+// Register ScrollTrigger plugin
+gsap.registerPlugin(ScrollTrigger);
+
+// Same images as in Hero component
+const heroImages = [
+  "/public/lovable-uploads/212e75b6-821d-4073-aba6-93892cbde78c.png",
+  "/public/lovable-uploads/d93bec81-b724-41cb-b278-f9cad0ccf892.png",
+  "/public/lovable-uploads/development.jpg",
+  "/public/favicon.ico"
+];
 
 const Services = () => {
+  const servicesSectionRef = useRef<HTMLDivElement>(null);
+  const gridContainerRef = useRef<HTMLDivElement>(null);
   const [isScrolled, setIsScrolled] = useState(false);
+  const [showImages, setShowImages] = useState(false);
+  const [flyingImages, setFlyingImages] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
       const scrollPosition = window.scrollY;
       const triggerPoint = window.innerHeight * 0.3;
+      const imageAnimationPoint = window.innerHeight * 0.8;
+      const flyingPoint = window.innerHeight * 0.7;
+      
       setIsScrolled(scrollPosition > triggerPoint);
+      setFlyingImages(scrollPosition > flyingPoint);
+      setShowImages(scrollPosition > imageAnimationPoint);
     };
 
     window.addEventListener('scroll', handleScroll);
@@ -24,7 +46,7 @@ const Services = () => {
       color: "cyan",
       skills: ["Penetration Testing", "Network Security", "Incident Response"],
       duration: "12 weeks",
-      image: "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?w=400&h=400&fit=crop"
+      image: heroImages[0]
     },
     {
       title: "Full Stack Development",
@@ -33,7 +55,7 @@ const Services = () => {
       color: "purple",
       skills: ["React/Next.js", "Node.js", "Cloud Deployment"],
       duration: "16 weeks",
-      image: "https://images.unsplash.com/photo-1461749280684-dccba630e2f6?w=400&h=400&fit=crop"
+      image: heroImages[1]
     },
     {
       title: "Data Science",
@@ -42,7 +64,7 @@ const Services = () => {
       color: "green",
       skills: ["Python/R", "Machine Learning", "Deep Learning"],
       duration: "14 weeks",
-      image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=400&h=400&fit=crop"
+      image: heroImages[2]
     },
     {
       title: "Data Analysis",
@@ -51,7 +73,7 @@ const Services = () => {
       color: "blue",
       skills: ["SQL", "Power BI", "Statistical Analysis"],
       duration: "10 weeks",
-      image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=400&h=400&fit=crop"
+      image: heroImages[3]
     }
   ];
 
@@ -63,10 +85,12 @@ const Services = () => {
       blue: "from-blue-500 to-blue-600 text-blue-400 border-blue-500/30"
     };
     return colors[color as keyof typeof colors];
-  };
-
-  return (
-    <section id="services" className="py-20 cyber-bg min-h-screen">
+  };  return (
+    <section 
+      id="services" 
+      ref={servicesSectionRef}
+      className="py-20 cyber-bg min-h-screen relative"
+    >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
           <div className="inline-flex items-center space-x-2 bg-gray-900/60 backdrop-blur-sm border border-cyan-500/30 rounded-full px-4 py-2 mb-6 animate-slide-up-stagger">
@@ -83,84 +107,25 @@ const Services = () => {
             Join our intensive internship programs designed by industry experts. 
             Gain hands-on experience with real projects and get hired by top tech companies.
           </p>
-        </div>
-
-        <div className={`transition-all duration-700 ease-in-out ${
-          isScrolled 
-            ? 'grid md:grid-cols-2 gap-8 max-w-5xl mx-auto' 
-            : 'flex flex-row justify-center items-center space-x-8 overflow-x-auto'
-        }`}>
-          {programs.map((program, index) => {
-            const Icon = program.icon;
-            const colorClasses = getColorClasses(program.color);
-            
-            return (
-              <div 
-                key={program.title}
-                className={`transition-all duration-700 ease-in-out tech-hover-effect ${
-                  isScrolled ? 'w-full' : 'min-w-[320px] w-[320px]'
-                }`}
-                style={{ animationDelay: `${index * 0.2}s` }}
-              >
-                <div className="tech-card p-6 h-full">
-                  {/* Program header */}
-                  <div className="flex items-center justify-between mb-4">
-                    <div className={`w-12 h-12 bg-gradient-to-br ${colorClasses.split(' ')[0]} ${colorClasses.split(' ')[1]} rounded-xl flex items-center justify-center`}>
-                      <Icon className="w-6 h-6 text-white" />
-                    </div>
-                    <span className={`px-3 py-1 bg-gray-800 border ${colorClasses.split(' ')[3]} rounded-full text-xs font-code ${colorClasses.split(' ')[2]}`}>
-                      {program.duration}
-                    </span>
-                  </div>
-
-                  {/* Program image */}
-                  <div className="aspect-video bg-gray-800 rounded-lg overflow-hidden mb-4 relative group">
-                    <img
-                      src={program.image}
-                      alt={program.title}
-                      className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-gray-900/80 to-transparent"></div>
-                    <div className="absolute bottom-2 left-2">
-                      <Lock className="w-4 h-4 text-gray-400" />
-                    </div>
-                  </div>
-
-                  {/* Program content */}
-                  <div className="space-y-4">
-                    <div>
-                      <h3 className="text-xl font-tech font-bold text-white mb-2">{program.title}</h3>
-                      <p className="text-gray-400 text-sm">{program.description}</p>
-                    </div>
-
-                    {/* Skills */}
-                    <div className="space-y-2">
-                      <div className="text-xs font-code text-gray-500 uppercase tracking-wider">Key Skills</div>
-                      <div className="flex flex-wrap gap-2">
-                        {program.skills.map((skill, idx) => (
-                          <span 
-                            key={idx} 
-                            className="px-2 py-1 bg-gray-800 text-gray-300 text-xs rounded border border-gray-700"
-                          >
-                            {skill}
-                          </span>
-                        ))}
-                      </div>
-                    </div>
-
-                    {/* Apply button */}
-                    <button className={`w-full bg-gradient-to-r ${colorClasses.split(' ')[0]} ${colorClasses.split(' ')[1]} hover:opacity-90 text-white font-semibold py-3 rounded-lg transition-all duration-300 transform hover:scale-105 flex items-center justify-center space-x-2`}>
-                      <span>Apply Now</span>
-                      <Icon className="w-4 h-4" />
-                    </button>
-                  </div>
-                </div>
-              </div>
-            );
-          })}
-        </div>
-
-        {/* Stats section */}
+        </div>        {/* Services Grid - Target for flying cards with precise positioning */}
+        <div 
+          ref={gridContainerRef}
+          className="grid grid-cols-2 lg:grid-cols-4 gap-6 max-w-6xl mx-auto min-h-[500px] items-center justify-items-center"
+        >
+          {/* Precise target slots for each card matching reference layout */}
+          <div className="w-80 h-96 opacity-0 flex items-center justify-center" data-target-slot="0">
+            <div className="w-full h-full bg-gray-800/10 rounded-2xl border border-gray-700/20"></div>
+          </div>
+          <div className="w-80 h-96 opacity-0 flex items-center justify-center" data-target-slot="1">
+            <div className="w-full h-full bg-gray-800/10 rounded-2xl border border-gray-700/20"></div>
+          </div>
+          <div className="w-80 h-96 opacity-0 flex items-center justify-center" data-target-slot="2">
+            <div className="w-full h-full bg-gray-800/10 rounded-2xl border border-gray-700/20"></div>
+          </div>
+          <div className="w-80 h-96 opacity-0 flex items-center justify-center" data-target-slot="3">
+            <div className="w-full h-full bg-gray-800/10 rounded-2xl border border-gray-700/20"></div>
+          </div>
+        </div>        {/* Stats section */}
         <div className="mt-20 grid grid-cols-1 md:grid-cols-4 gap-8 max-w-4xl mx-auto">
           {[
             { label: "Students Placed", value: "500+", color: "cyan" },
