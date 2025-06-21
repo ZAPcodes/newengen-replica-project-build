@@ -1,12 +1,21 @@
 
-import { useState } from "react";
-import { Menu, X, ArrowRight } from "lucide-react";
+import { useState, useEffect } from "react";
+import { Menu, X, Terminal, Zap } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Link, useLocation } from "react-router-dom";
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
   const location = useLocation();
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 20);
+    };
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
   const navItems = [
     { name: "Home", href: "/" },
@@ -22,37 +31,52 @@ const Header = () => {
   };
 
   return (
-    <header className="fixed top-0 left-0 right-0 bg-gray-800 z-50">
+    <header className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+      isScrolled ? 'bg-gray-900/95 backdrop-blur-md border-b border-gray-800' : 'bg-gray-900/80 backdrop-blur-sm'
+    }`}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
           <div className="flex-shrink-0">
-            <Link to="/" className="flex items-center space-x-2">
-              <div className="w-8 h-8 bg-yellow-400 rounded-lg flex items-center justify-center">
-                <div className="w-4 h-4 bg-gray-800 rounded-sm transform rotate-45"></div>
+            <Link to="/" className="flex items-center space-x-3 group">
+              <div className="relative">
+                <div className="w-10 h-10 bg-gradient-to-br from-cyan-400 to-purple-500 rounded-xl flex items-center justify-center group-hover:animate-glow-pulse">
+                  <Terminal className="w-5 h-5 text-white" />
+                </div>
+                <div className="absolute -top-1 -right-1 w-3 h-3 bg-green-400 rounded-full animate-pulse"></div>
               </div>
-              <span className="text-white text-xl font-bold tracking-wider">NEW ENGEN</span>
+              <div>
+                <span className="text-white text-xl font-tech font-bold tracking-wider">NEW ENGEN</span>
+                <div className="text-xs text-cyan-400 font-code">TECH.INTERNSHIPS</div>
+              </div>
             </Link>
           </div>
           
           {/* Desktop Navigation */}
           <nav className="hidden md:block">
-            <div className="ml-10 flex items-baseline space-x-8">
-              {navItems.map((item) => (
+            <div className="flex items-center space-x-1">
+              {navItems.map((item, index) => (
                 <Link
                   key={item.name}
                   to={item.href}
-                  className={`px-3 py-2 text-sm font-medium transition-colors duration-200 relative ${
+                  className={`relative px-4 py-2 text-sm font-medium transition-all duration-300 rounded-lg group ${
                     isActiveLink(item.href)
-                      ? "text-yellow-400"
-                      : "text-white hover:text-yellow-400"
+                      ? "text-cyan-400 bg-cyan-400/10"
+                      : "text-gray-300 hover:text-cyan-400 hover:bg-gray-800/50"
                   }`}
                 >
                   {item.name}
                   {isActiveLink(item.href) && (
-                    <div className="absolute bottom-0 left-0 right-0 h-0.5 bg-yellow-400"></div>
+                    <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-1 h-1 bg-cyan-400 rounded-full"></div>
                   )}
+                  <div className="absolute inset-0 rounded-lg bg-gradient-to-r from-cyan-400/0 via-cyan-400/5 to-purple-400/0 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                 </Link>
               ))}
+              
+              {/* Apply button */}
+              <button className="ml-4 bg-gradient-to-r from-cyan-500 to-purple-500 hover:from-cyan-400 hover:to-purple-400 text-white font-semibold px-4 py-2 rounded-lg transition-all duration-300 transform hover:scale-105 flex items-center space-x-2">
+                <Zap className="w-4 h-4" />
+                <span>Apply Now</span>
+              </button>
             </div>
           </nav>
 
@@ -60,7 +84,7 @@ const Header = () => {
           <div className="md:hidden">
             <button
               onClick={() => setIsMenuOpen(!isMenuOpen)}
-              className="text-white hover:text-yellow-400 p-2"
+              className="text-gray-300 hover:text-cyan-400 p-2 rounded-lg hover:bg-gray-800/50 transition-all duration-200"
             >
               {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
             </button>
@@ -70,21 +94,32 @@ const Header = () => {
         {/* Mobile Navigation */}
         {isMenuOpen && (
           <div className="md:hidden">
-            <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3 bg-gray-800 border-t border-gray-700">
-              {navItems.map((item) => (
+            <div className="px-2 pt-2 pb-3 space-y-1 bg-gray-900/95 backdrop-blur-md border-t border-gray-800 rounded-b-lg">
+              {navItems.map((item, index) => (
                 <Link
                   key={item.name}
                   to={item.href}
-                  className={`block px-3 py-2 text-base font-medium ${
+                  className={`block px-4 py-3 text-base font-medium rounded-lg transition-all duration-200 ${
                     isActiveLink(item.href)
-                      ? "text-yellow-400"
-                      : "text-white hover:text-yellow-400"
+                      ? "text-cyan-400 bg-cyan-400/10"
+                      : "text-gray-300 hover:text-cyan-400 hover:bg-gray-800/50"
                   }`}
                   onClick={() => setIsMenuOpen(false)}
                 >
-                  {item.name}
+                  <div className="flex items-center space-x-3">
+                    {isActiveLink(item.href) && (
+                      <div className="w-2 h-2 bg-cyan-400 rounded-full"></div>
+                    )}
+                    <span>{item.name}</span>
+                  </div>
                 </Link>
               ))}
+              <div className="pt-2">
+                <button className="w-full bg-gradient-to-r from-cyan-500 to-purple-500 text-white font-semibold px-4 py-3 rounded-lg transition-all duration-300 flex items-center justify-center space-x-2">
+                  <Zap className="w-4 h-4" />
+                  <span>Apply Now</span>
+                </button>
+              </div>
             </div>
           </div>
         )}
