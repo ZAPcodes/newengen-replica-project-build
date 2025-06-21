@@ -39,9 +39,9 @@ export const useCardAnimation = ({
     const tl = gsap.timeline({
       scrollTrigger: {
         trigger: heroContainerRef.current,
-        start: "top center",
+        start: "center center",
         end: "bottom top",
-        scrub: 1.5,
+        scrub: 1,
         pin: false,
         anticipatePin: 1,
         refreshPriority: -1,
@@ -79,7 +79,6 @@ export const useCardAnimation = ({
     });
 
     // Calculate precise final positions in services section
-    const servicesRect = servicesSection.getBoundingClientRect();
     const gridSlots = servicesSection.querySelectorAll('[data-target-slot]');
     
     // Phase 1: Cards start separating with staggered timing (0-25% of scroll)
@@ -102,8 +101,11 @@ export const useCardAnimation = ({
       if (!targetSlot) return;
 
       const slotRect = targetSlot.getBoundingClientRect();
-      const finalX = slotRect.left + slotRect.width / 2 - window.innerWidth / 2;
-      const finalY = slotRect.top + slotRect.height / 2 - window.innerHeight / 2;
+      const servicesRect = servicesSection.getBoundingClientRect();
+      
+      // Calculate position relative to services section
+      const finalX = slotRect.left - servicesRect.left + slotRect.width / 2 - servicesRect.width / 2;
+      const finalY = slotRect.top - servicesRect.top + slotRect.height / 2 - servicesRect.height / 2;
 
       // Create curved flight path
       const midX = finalX * 0.5 + (Math.random() - 0.5) * 200;
@@ -148,6 +150,9 @@ export const useCardAnimation = ({
         scale: 1.05,
         zIndex: 10 + index,
         onComplete: () => {
+          // Mark card as landed
+          card.setAttribute('data-card-landed', 'true');
+          
           // Change positioning to static so cards stay in services section
           gsap.set(card, {
             position: "static",

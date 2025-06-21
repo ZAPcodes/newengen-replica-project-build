@@ -20,6 +20,35 @@ const App = () => {
   // Initialize smooth scrolling
   useSmoothScroll();
 
+  // Add page loading animation
+  useEffect(() => {
+    document.body.classList.add('page-transition');
+    
+    // Preload critical resources
+    const preloadImages = [
+      '/public/lovable-uploads/212e75b6-821d-4073-aba6-93892cbde78c.png',
+      '/public/lovable-uploads/d93bec81-b724-41cb-b278-f9cad0ccf892.png',
+      '/public/lovable-uploads/development.jpg'
+    ];
+
+    preloadImages.forEach(src => {
+      const img = new Image();
+      img.src = src;
+    });
+
+    // Optimize performance
+    const optimizePerformance = () => {
+      // Add GPU acceleration to animated elements
+      const animatedElements = document.querySelectorAll('.hover-magnetic, .tech-card, .animate-slide-up-stagger');
+      animatedElements.forEach(el => {
+        (el as HTMLElement).classList.add('gpu-accelerated');
+      });
+    };
+
+    // Run optimization after initial render
+    setTimeout(optimizePerformance, 100);
+  }, []);
+
   return (
     <QueryClientProvider client={queryClient}>
       <TooltipProvider>
