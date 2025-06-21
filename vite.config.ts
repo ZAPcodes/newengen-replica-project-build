@@ -1,22 +1,28 @@
-import { defineConfig } from "vite";
-import react from "@vitejs/plugin-react-swc";
-import path from "path";
-import { componentTagger } from "lovable-tagger";
+import { defineConfig } from 'vite';
+import react from '@vitejs/plugin-react-swc';
+import path from 'path';
+import { componentTagger } from 'lovable-tagger';
 
-// https://vitejs.dev/config/
+// Ensure TypeScript recognizes the defineConfig type
 export default defineConfig(({ mode }) => ({
   server: {
-    host: "::",
+    host: '::', // IPv6 and IPv4 support
     port: 8080,
   },
   plugins: [
-    react(),
-    mode === 'development' &&
-    componentTagger(),
-  ].filter(Boolean),
+    react(), // Always include react-swc plugin
+    mode === 'development' && componentTagger(), // Conditionally include componentTagger
+  ].filter(Boolean), // Remove undefined values
   resolve: {
     alias: {
-      "@": path.resolve(__dirname, "./src"),
+      '@': path.resolve(__dirname, './src'),
+    },
+  },
+  // Add SWC-specific options if needed
+  optimizeDeps: {
+    esbuildOptions: {
+      // Ensure SWC handles JSX correctly
+      jsx: 'automatic',
     },
   },
 }));
