@@ -50,11 +50,11 @@ const AnimatedStat = ({ value, label, symbol = "" }) => {
 
   return (
     <div ref={ref} className="text-center">
-      <p className="text-4xl md:text-5xl font-bold text-cyan-400">
+      <p className="text-4xl md:text-5xl font-bold text-secondary-cyan">
         <span ref={countRef}>0</span>
         {symbol}+
       </p>
-      <p className="text-gray-400 mt-2">{label}</p>
+      <p className="text-light-blue mt-2">{label}</p>
     </div>
   );
 };
@@ -83,10 +83,10 @@ const WhoWeAre = () => {
   };
 
   return (
-    <section id="who-we-are" className="py-20 bg-black text-white">
+    <section id="who-we-are" className="py-20 bg-primary-dark text-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.h2
-          className="text-4xl font-bold mb-20 text-center"
+          className="text-4xl font-bold mb-20 text-center text-shadow"
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           viewport={{ once: false }}
@@ -105,17 +105,17 @@ const WhoWeAre = () => {
           {cardData.map((card, index) => (
             <motion.div
               key={index}
-              className="bg-gray-800 p-8 rounded-lg shadow-lg flex flex-col"
+              className="bg-primary-medium/80 p-8 rounded-lg shadow-xl hover:shadow-2xl transition-all duration-300 flex flex-col border border-secondary-cyan/20"
               variants={cardVariants}
             >
-              <div className="w-16 h-16 bg-gray-700 rounded-full flex items-center justify-center border-2 border-white mb-6">
-                <card.icon className="w-8 h-8 text-cyan-400" />
+              <div className="w-16 h-16 bg-gradient-to-br from-secondary-cyan to-primary-medium rounded-full flex items-center justify-center border-2 border-light-blue mb-6 shadow-lg">
+                <card.icon className="w-8 h-8 text-white" />
               </div>
-              <h3 className="text-2xl font-bold mb-4">{card.title}</h3>
-              <p className="text-gray-300 leading-relaxed flex-grow">
+              <h3 className="text-2xl font-bold mb-4 text-secondary-cyan">{card.title}</h3>
+              <p className="text-light-blue leading-relaxed flex-grow">
                 {card.description}
               </p>
-              <button className="mt-6 bg-cyan-600 hover:bg-cyan-700 text-white font-bold py-2 px-4 rounded-full flex items-center justify-center self-start transition-colors duration-300">
+              <button className="mt-6 bg-gradient-to-r from-secondary-cyan to-primary-medium hover:from-secondary-cyan/90 hover:to-primary-medium/90 text-white font-bold py-2 px-4 rounded-full flex items-center justify-center self-start transition-all duration-300 shadow-lg hover:shadow-xl">
                 Learn More <ArrowRight className="ml-2 w-5 h-5" />
               </button>
             </motion.div>
