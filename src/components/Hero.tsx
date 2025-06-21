@@ -134,7 +134,7 @@ const Hero = () => {
               {/* Tech badge */}
               <div className="inline-flex items-center space-x-2 bg-primary-dark/60 backdrop-blur-sm border border-secondary-cyan/30 rounded-full px-4 py-2 animate-slide-up-stagger stagger-1 hover-magnetic">
                 <Terminal className="w-4 h-4 text-secondary-cyan animate-neon-pulse" />
-                <span className="text-sm font-code text-secondary-cyan">TECH INTERNSHIPS 2024</span>
+                <span className="text-sm font-code text-secondary-cyan">TECH INTERNSHIPS 2025</span>
               </div>
 
               {/* Animated Main Heading */}
