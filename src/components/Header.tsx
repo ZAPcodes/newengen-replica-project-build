@@ -2,54 +2,59 @@
 import { useState } from "react";
 import { Menu, X, ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { Link, useLocation } from "react-router-dom";
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const location = useLocation();
 
   const navItems = [
-    { name: "Work", href: "#work" },
-    { name: "Services", href: "#services" },
-    { name: "Solutions", href: "#solutions" },
-    { name: "Insights", href: "#insights" },
-    { name: "Technology", href: "#technology" },
-    { name: "Company", href: "#company" },
+    { name: "Home", href: "/" },
+    { name: "About Us", href: "/about" },
+    { name: "Programs", href: "/programs" },
+    { name: "Verify Certificate", href: "/verify-certificate" },
+    { name: "What's Special", href: "/whats-special" },
+    { name: "Contact Us", href: "/contact" },
   ];
+
+  const isActiveLink = (href: string) => {
+    return location.pathname === href;
+  };
 
   return (
     <header className="fixed top-0 left-0 right-0 bg-gray-800 z-50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
           <div className="flex-shrink-0">
-            <div className="flex items-center space-x-2">
+            <Link to="/" className="flex items-center space-x-2">
               <div className="w-8 h-8 bg-yellow-400 rounded-lg flex items-center justify-center">
                 <div className="w-4 h-4 bg-gray-800 rounded-sm transform rotate-45"></div>
               </div>
               <span className="text-white text-xl font-bold tracking-wider">NEW ENGEN</span>
-            </div>
+            </Link>
           </div>
           
           {/* Desktop Navigation */}
           <nav className="hidden md:block">
             <div className="ml-10 flex items-baseline space-x-8">
               {navItems.map((item) => (
-                <a
+                <Link
                   key={item.name}
-                  href={item.href}
-                  className="text-white hover:text-yellow-400 px-3 py-2 text-sm font-medium transition-colors duration-200"
+                  to={item.href}
+                  className={`px-3 py-2 text-sm font-medium transition-colors duration-200 relative ${
+                    isActiveLink(item.href)
+                      ? "text-yellow-400"
+                      : "text-white hover:text-yellow-400"
+                  }`}
                 >
                   {item.name}
-                </a>
+                  {isActiveLink(item.href) && (
+                    <div className="absolute bottom-0 left-0 right-0 h-0.5 bg-yellow-400"></div>
+                  )}
+                </Link>
               ))}
             </div>
           </nav>
-
-          {/* CTA Button */}
-          <div className="hidden md:block">
-            <Button className="bg-orange-400 hover:bg-orange-500 text-gray-800 font-semibold px-6 py-2 rounded-full">
-              Let's talk
-              <ArrowRight className="ml-2 h-4 w-4" />
-            </Button>
-          </div>
 
           {/* Mobile menu button */}
           <div className="md:hidden">
@@ -67,19 +72,19 @@ const Header = () => {
           <div className="md:hidden">
             <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3 bg-gray-800 border-t border-gray-700">
               {navItems.map((item) => (
-                <a
+                <Link
                   key={item.name}
-                  href={item.href}
-                  className="text-white hover:text-yellow-400 block px-3 py-2 text-base font-medium"
+                  to={item.href}
+                  className={`block px-3 py-2 text-base font-medium ${
+                    isActiveLink(item.href)
+                      ? "text-yellow-400"
+                      : "text-white hover:text-yellow-400"
+                  }`}
                   onClick={() => setIsMenuOpen(false)}
                 >
                   {item.name}
-                </a>
+                </Link>
               ))}
-              <Button className="bg-orange-400 hover:bg-orange-500 text-gray-800 font-semibold px-6 py-2 rounded-full mt-4 w-full">
-                Let's talk
-                <ArrowRight className="ml-2 h-4 w-4" />
-              </Button>
             </div>
           </div>
         )}
