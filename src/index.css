@@ -364,6 +364,31 @@
   }
 }
 
+/* Enhanced stats card animations */
+@keyframes stats-glow {
+  0%, 100% {
+    box-shadow: 
+      0 4px 20px rgba(0, 255, 198, 0.1),
+      0 0 40px rgba(0, 255, 198, 0.05);
+  }
+  50% {
+    box-shadow: 
+      0 8px 40px rgba(0, 255, 198, 0.2),
+      0 0 60px rgba(0, 255, 198, 0.1);
+  }
+}
+
+@keyframes number-count {
+  0% {
+    transform: translateY(20px);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
 /* ANIMATION CLASSES */
 .animate-matrix-rain {
   animation: matrix-rain 3s linear infinite;
@@ -458,6 +483,14 @@
 
 .animate-smooth-entrance {
   animation: smooth-entrance 1s ease-out forwards;
+}
+
+.animate-stats-glow {
+  animation: stats-glow 3s ease-in-out infinite;
+}
+
+.animate-number-count {
+  animation: number-count 0.8s ease-out forwards;
 }
 
 /* PREMIUM HOVER EFFECTS */
@@ -936,6 +969,42 @@ html {
   transform: translateY(-2px);
 }
 
+/* PAGE LOADING IMPROVEMENTS */
+body {
+  animation: page-fade-in 0.8s ease-out;
+}
+
+/* SMOOTH PAGE TRANSITIONS */
+.page-transition {
+  animation: smooth-entrance 1s ease-out;
+}
+
+/* LOADING STATES */
+.loading-shimmer {
+  background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+  background-size: 200% 100%;
+  animation: tech-shimmer 1.5s infinite;
+}
+
+.loading-pulse {
+  animation: glow-pulse 1.5s ease-in-out infinite;
+}
+
+/* PERFORMANCE OPTIMIZATIONS */
+.will-change-transform {
+  will-change: transform;
+}
+
+.will-change-opacity {
+  will-change: opacity;
+}
+
+.gpu-accelerated {
+  transform: translateZ(0);
+  backface-visibility: hidden;
+  perspective: 1000px;
+}
+
 /* ENSURE PROPER TEXT CONTRAST */
 .bg-white, .bg-gray-50, .bg-gray-100 {
   color: #1f2937 !important;
@@ -1036,40 +1105,4 @@ button {
 ::-moz-selection {
   background: rgba(0, 255, 198, 0.3);
   color: #0F0F0F;
-}
-
-/* PAGE LOADING IMPROVEMENTS */
-body {
-  animation: page-fade-in 0.8s ease-out;
-}
-
-/* SMOOTH PAGE TRANSITIONS */
-.page-transition {
-  animation: smooth-entrance 1s ease-out;
-}
-
-/* LOADING STATES */
-.loading-shimmer {
-  background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
-  background-size: 200% 100%;
-  animation: tech-shimmer 1.5s infinite;
-}
-
-.loading-pulse {
-  animation: glow-pulse 1.5s ease-in-out infinite;
-}
-
-/* PERFORMANCE OPTIMIZATIONS */
-.will-change-transform {
-  will-change: transform;
-}
-
-.will-change-opacity {
-  will-change: opacity;
-}
-
-.gpu-accelerated {
-  transform: translateZ(0);
-  backface-visibility: hidden;
-  perspective: 1000px;
 }
