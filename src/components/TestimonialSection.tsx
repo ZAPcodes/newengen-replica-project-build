@@ -1,6 +1,9 @@
 import React from "react";
 import { motion, Variants } from "framer-motion";
 import { ArrowRight, MessageSquare, Star, CheckCircle, Users, Award, TrendingUp } from "lucide-react";
+import AnimatedText from "./AnimatedText";
+import MagneticButton from "./MagneticButton";
+import TiltCard from "./TiltCard";
 
 const testimonials = [
 	{
@@ -108,40 +111,42 @@ type Testimonial = typeof testimonials[0];
 
 const TestimonialCard = ({ testimonial }: { testimonial: Testimonial }) => {
 	return (
-		<div className="bg-white p-8 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 w-[400px] md:w-[450px] flex-shrink-0 border border-gray-100">
-			<div className="flex items-center gap-4 mb-6">
-				<img
-					src={testimonial.image}
-					alt={testimonial.name}
-					className="w-16 h-16 rounded-full border-4 border-secondary-cyan/20 object-cover"
-				/>
-				<div className="flex-1">
-					<h4 className="font-bold text-gray-900 text-lg">{testimonial.name}</h4>
-					<p className="text-secondary-cyan font-medium">{testimonial.role}</p>
-					<p className="text-gray-500 text-sm">{testimonial.company}</p>
-				</div>
-				<div className="text-right">
-					<div className="flex items-center gap-1 mb-1">
-						{[...Array(testimonial.rating)].map((_, i) => (
-							<Star key={i} className="w-4 h-4 text-yellow-400 fill-current" />
-						))}
+		<TiltCard>
+			<div className="bg-white p-8 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 w-[400px] md:w-[450px] flex-shrink-0 border border-gray-100 hover-magnetic">
+				<div className="flex items-center gap-4 mb-6">
+					<img
+						src={testimonial.image}
+						alt={testimonial.name}
+						className="w-16 h-16 rounded-full border-4 border-secondary-cyan/20 object-cover"
+					/>
+					<div className="flex-1">
+						<h4 className="font-bold text-gray-900 text-lg">{testimonial.name}</h4>
+						<p className="text-secondary-cyan font-medium">{testimonial.role}</p>
+						<p className="text-gray-500 text-sm">{testimonial.company}</p>
 					</div>
-					<span className="text-xs bg-green-100 text-green-700 px-2 py-1 rounded-full font-medium">
-						{testimonial.achievement}
-					</span>
+					<div className="text-right">
+						<div className="flex items-center gap-1 mb-1">
+							{[...Array(testimonial.rating)].map((_, i) => (
+								<Star key={i} className="w-4 h-4 text-yellow-400 fill-current" />
+							))}
+						</div>
+						<span className="text-xs bg-green-100 text-green-700 px-2 py-1 rounded-full font-medium">
+							{testimonial.achievement}
+						</span>
+					</div>
+				</div>
+				<p className="text-gray-700 leading-relaxed mb-4 italic">
+					"{testimonial.quote}"
+				</p>
+				<div className="flex items-center justify-between">
+					<div className="flex items-center gap-2 text-sm text-gray-500">
+						<CheckCircle className="w-4 h-4 text-green-500" />
+						<span>Verified Graduate</span>
+					</div>
+					<MessageSquare className="w-5 h-5 text-secondary-cyan" />
 				</div>
 			</div>
-			<p className="text-gray-700 leading-relaxed mb-4 italic">
-				"{testimonial.quote}"
-			</p>
-			<div className="flex items-center justify-between">
-				<div className="flex items-center gap-2 text-sm text-gray-500">
-					<CheckCircle className="w-4 h-4 text-green-500" />
-					<span>Verified Graduate</span>
-				</div>
-				<MessageSquare className="w-5 h-5 text-secondary-cyan" />
-			</div>
-		</div>
+		</TiltCard>
 	);
 };
 
@@ -172,37 +177,45 @@ const TestimonialSection = () => {
 			<div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
 				{/* Header */}
 				<div className="text-center mb-16">
-					<div className="inline-flex items-center space-x-2 bg-white/80 backdrop-blur-sm border border-secondary-cyan/20 rounded-full px-6 py-3 mb-8 shadow-lg">
+					<div className="inline-flex items-center space-x-2 bg-white/80 backdrop-blur-sm border border-secondary-cyan/20 rounded-full px-6 py-3 mb-8 shadow-lg hover-magnetic">
 						<MessageSquare className="w-5 h-5 text-secondary-cyan" />
 						<span className="text-sm font-semibold text-gray-700 uppercase tracking-wider">Success Stories</span>
 					</div>
 
-					<h2 className="text-4xl md:text-5xl font-tech font-bold text-gray-900 mb-6">
-						What Our Learners
-						<span className="block text-secondary-cyan">Say About Us</span>
-					</h2>
+					<AnimatedText
+						text="What Our Learners Say About Us"
+						className="text-4xl md:text-5xl font-tech font-bold text-gray-900 mb-6"
+						type="words"
+						delay={0.2}
+						stagger={0.1}
+					/>
 					
-					<p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
-						Real stories from students who transformed their careers with our comprehensive tech programs
-					</p>
+					<AnimatedText
+						text="Real stories from students who transformed their careers with our comprehensive tech programs"
+						className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed"
+						type="words"
+						delay={0.5}
+						stagger={0.05}
+					/>
 				</div>
 
 				{/* Stats Section */}
 				<div className="grid grid-cols-2 md:grid-cols-4 gap-6 mb-16">
 					{stats.map((stat, index) => (
-						<motion.div
-							key={index}
-							initial={{ opacity: 0, y: 20 }}
-							whileInView={{ opacity: 1, y: 0 }}
-							transition={{ duration: 0.6, delay: index * 0.1 }}
-							className="bg-white p-6 rounded-2xl shadow-lg text-center border border-gray-100 hover:shadow-xl transition-all duration-300"
-						>
-							<div className={`w-12 h-12 bg-gradient-to-br ${stat.color} rounded-xl flex items-center justify-center mx-auto mb-4 shadow-lg`}>
-								<stat.icon className="w-6 h-6 text-white" />
-							</div>
-							<div className="text-2xl md:text-3xl font-bold text-gray-900 mb-2">{stat.value}</div>
-							<div className="text-gray-600 text-sm font-medium">{stat.label}</div>
-						</motion.div>
+						<TiltCard key={index}>
+							<motion.div
+								initial={{ opacity: 0, y: 20 }}
+								whileInView={{ opacity: 1, y: 0 }}
+								transition={{ duration: 0.6, delay: index * 0.1 }}
+								className="bg-white p-6 rounded-2xl shadow-lg text-center border border-gray-100 hover:shadow-xl transition-all duration-300 hover-magnetic"
+							>
+								<div className={`w-12 h-12 bg-gradient-to-br ${stat.color} rounded-xl flex items-center justify-center mx-auto mb-4 shadow-lg`}>
+									<stat.icon className="w-6 h-6 text-white" />
+								</div>
+								<div className="text-2xl md:text-3xl font-bold text-gray-900 mb-2">{stat.value}</div>
+								<div className="text-gray-600 text-sm font-medium">{stat.label}</div>
+							</motion.div>
+						</TiltCard>
 					))}
 				</div>
 
@@ -221,24 +234,34 @@ const TestimonialSection = () => {
 
 				{/* Call to Action */}
 				<div className="text-center">
-					<div className="bg-white p-8 md:p-12 rounded-3xl shadow-xl border border-gray-100 max-w-4xl mx-auto">
-						<h3 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-							Ready to Join Our Success Stories?
-						</h3>
-						<p className="text-lg text-gray-600 mb-8 max-w-2xl mx-auto">
-							Start your journey with INLIGHN TECH today and become the next success story. 
-							Join thousands of students who have transformed their careers.
-						</p>
-						<div className="flex flex-col sm:flex-row gap-4 justify-center">
-							<button className="bg-gradient-to-r from-secondary-cyan to-primary-medium hover:from-secondary-cyan/90 hover:to-primary-medium/90 text-white font-bold py-4 px-8 rounded-xl transition-all duration-300 shadow-lg hover:shadow-xl transform hover:scale-105 flex items-center justify-center space-x-2">
-								<span>Start Your Journey</span>
-								<ArrowRight className="w-5 h-5" />
-							</button>
-							<button className="border-2 border-primary-medium text-primary-medium hover:bg-primary-medium hover:text-white font-semibold py-4 px-8 rounded-xl transition-all duration-300">
-								View All Programs
-							</button>
+					<TiltCard>
+						<div className="bg-white p-8 md:p-12 rounded-3xl shadow-xl border border-gray-100 max-w-4xl mx-auto hover-magnetic">
+							<AnimatedText
+								text="Ready to Join Our Success Stories?"
+								className="text-3xl md:text-4xl font-bold text-gray-900 mb-4"
+								type="words"
+								delay={0.2}
+								stagger={0.1}
+							/>
+							<p className="text-lg text-gray-600 mb-8 max-w-2xl mx-auto">
+								Start your journey with INLIGHN TECH today and become the next success story. 
+								Join thousands of students who have transformed their careers.
+							</p>
+							<div className="flex flex-col sm:flex-row gap-4 justify-center">
+								<MagneticButton strength={0.4} range={120}>
+									<button className="bg-gradient-to-r from-secondary-cyan to-primary-medium hover:from-secondary-cyan/90 hover:to-primary-medium/90 text-white font-bold py-4 px-8 rounded-xl transition-all duration-300 shadow-lg hover:shadow-xl transform hover:scale-105 flex items-center justify-center space-x-2 hover-shine">
+										<span>Start Your Journey</span>
+										<ArrowRight className="w-5 h-5" />
+									</button>
+								</MagneticButton>
+								<MagneticButton strength={0.3} range={100}>
+									<button className="border-2 border-primary-medium text-primary-medium hover:bg-primary-medium hover:text-white font-semibold py-4 px-8 rounded-xl transition-all duration-300">
+										View All Programs
+									</button>
+								</MagneticButton>
+							</div>
 						</div>
-					</div>
+					</TiltCard>
 				</div>
 			</div>
 		</section>

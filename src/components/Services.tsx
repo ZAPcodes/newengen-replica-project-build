@@ -1,8 +1,22 @@
-import { useRef } from "react";
-import { Shield, Code, Database, BarChart, Cpu } from "lucide-react";
+import { useEffect, useState, useRef } from "react";
+import { Shield, Code, Database, BarChart, Cpu, Lock } from "lucide-react";
+import { gsap } from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+// Register ScrollTrigger plugin
+gsap.registerPlugin(ScrollTrigger);
+
+// Same images as in Hero component
+const heroImages = [
+  "/public/lovable-uploads/212e75b6-821d-4073-aba6-93892cbde78c.png",
+  "/public/lovable-uploads/d93bec81-b724-41cb-b278-f9cad0ccf892.png",
+  "/public/lovable-uploads/development.jpg",
+  "/public/favicon.ico"
+];
 
 const Services = () => {
   const servicesSectionRef = useRef<HTMLDivElement>(null);
+  const gridContainerRef = useRef<HTMLDivElement>(null);
 
   const programs = [
     {
@@ -12,7 +26,7 @@ const Services = () => {
       color: "cyan",
       skills: ["Penetration Testing", "Network Security", "Incident Response"],
       duration: "12 weeks",
-      image: "/public/lovable-uploads/212e75b6-821d-4073-aba6-93892cbde78c.png"
+      image: heroImages[0]
     },
     {
       title: "Full Stack Development",
@@ -21,7 +35,7 @@ const Services = () => {
       color: "purple",
       skills: ["React/Next.js", "Node.js", "Cloud Deployment"],
       duration: "16 weeks",
-      image: "/public/lovable-uploads/d93bec81-b724-41cb-b278-f9cad0ccf892.png"
+      image: heroImages[1]
     },
     {
       title: "Data Science",
@@ -30,7 +44,7 @@ const Services = () => {
       color: "green",
       skills: ["Python/R", "Machine Learning", "Deep Learning"],
       duration: "14 weeks",
-      image: "/public/lovable-uploads/development.jpg"
+      image: heroImages[2]
     },
     {
       title: "Data Analysis",
@@ -39,7 +53,7 @@ const Services = () => {
       color: "blue",
       skills: ["SQL", "Power BI", "Statistical Analysis"],
       duration: "10 weeks",
-      image: "/public/favicon.ico"
+      image: heroImages[3]
     }
   ];
 
@@ -77,64 +91,26 @@ const Services = () => {
           </p>
         </div>
 
-        {/* Services Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 max-w-6xl mx-auto mb-16">
-          {programs.map((program, index) => {
-            const colorClasses = getColorClasses(program.color);
-            
-            return (
-              <div 
-                key={index}
-                className="w-full h-96 bg-primary-dark/90 backdrop-blur-sm border border-primary-medium/50 rounded-2xl overflow-hidden shadow-2xl hover:shadow-3xl transition-all duration-300 transform hover:scale-105 animate-slide-up-stagger"
-                style={{ animationDelay: `${index * 0.2}s` }}
-              >
-                {/* Card Header */}
-                <div className="p-6 border-b border-primary-medium/50">
-                  <div className="flex items-center justify-between mb-4">
-                    <div className={`w-12 h-12 bg-gradient-to-br ${colorClasses.split(' ')[0]} ${colorClasses.split(' ')[1]} rounded-xl flex items-center justify-center shadow-lg`}>
-                      <program.icon className="w-6 h-6 text-white" />
-                    </div>
-                    <span className={`px-3 py-1 bg-primary-medium border ${colorClasses.split(' ')[3]} rounded-full text-xs font-mono ${colorClasses.split(' ')[2]}`}>
-                      {program.duration}
-                    </span>
-                  </div>
-                  <h3 className="text-xl font-bold text-white mb-2">{program.title}</h3>
-                  <p className="text-light-blue text-sm">{program.description}</p>
-                </div>
-
-                {/* Card Image */}
-                <div className="h-40 relative overflow-hidden">
-                  <img
-                    src={program.image}
-                    alt={program.title}
-                    className="w-full h-full object-cover"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-primary-dark/80 to-transparent"></div>
-                </div>
-
-                {/* Card Footer */}
-                <div className="p-6">
-                  <div className="space-y-3">
-                    <div className="text-xs font-mono text-light-blue/70 uppercase tracking-wider">Key Skills</div>
-                    <div className="flex flex-wrap gap-2">
-                      {program.skills.map((skill, idx) => (
-                        <span 
-                          key={idx} 
-                          className="px-2 py-1 bg-primary-medium text-light-blue text-xs rounded border border-secondary-cyan/30 hover:bg-secondary-cyan/10 transition-colors duration-200"
-                        >
-                          {skill}
-                        </span>
-                      ))}
-                    </div>
-                  </div>
-                </div>
-              </div>
-            );
-          })}
+        {/* Services Grid - Target for flying cards with invisible placeholders */}
+        <div 
+          ref={gridContainerRef}
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 max-w-6xl mx-auto min-h-[500px] items-center justify-items-center"
+        >
+          {/* Invisible target slots for flying cards */}
+          {programs.map((program, index) => (
+            <div 
+              key={index}
+              className="w-80 h-96 flex items-center justify-center opacity-0" 
+              data-target-slot={index}
+            >
+              {/* Completely invisible placeholder - cards will land here */}
+              <div className="w-full h-full"></div>
+            </div>
+          ))}
         </div>
 
         {/* Stats section */}
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-8 max-w-4xl mx-auto mb-16">
+        <div className="mt-20 grid grid-cols-1 md:grid-cols-4 gap-8 max-w-4xl mx-auto">
           {[
             { label: "Students Placed", value: "500+", color: "cyan" },
             { label: "Partner Companies", value: "50+", color: "purple" },
@@ -155,7 +131,7 @@ const Services = () => {
         </div>
 
         {/* Call to Action */}
-        <div className="text-center">
+        <div className="text-center mt-16">
           <button className="tech-button-accent text-lg px-8 py-4 shadow-2xl hover:shadow-3xl transform hover:scale-105 transition-all duration-300">
             Explore All Programs
           </button>
