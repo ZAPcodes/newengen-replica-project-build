@@ -17,25 +17,6 @@ const heroImages = [
 const Services = () => {
   const servicesSectionRef = useRef<HTMLDivElement>(null);
   const gridContainerRef = useRef<HTMLDivElement>(null);
-  const [isScrolled, setIsScrolled] = useState(false);
-  const [showImages, setShowImages] = useState(false);
-  const [flyingImages, setFlyingImages] = useState(false);
-
-  useEffect(() => {
-    const handleScroll = () => {
-      const scrollPosition = window.scrollY;
-      const triggerPoint = window.innerHeight * 0.3;
-      const imageAnimationPoint = window.innerHeight * 0.8;
-      const flyingPoint = window.innerHeight * 0.7;
-      
-      setIsScrolled(scrollPosition > triggerPoint);
-      setFlyingImages(scrollPosition > flyingPoint);
-      setShowImages(scrollPosition > imageAnimationPoint);
-    };
-
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
 
   const programs = [
     {
@@ -110,26 +91,20 @@ const Services = () => {
           </p>
         </div>
 
-        {/* Services Grid - Target for flying cards with precise positioning */}
+        {/* Services Grid - Target for flying cards with invisible placeholders */}
         <div 
           ref={gridContainerRef}
           className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 max-w-6xl mx-auto min-h-[500px] items-center justify-items-center"
         >
-          {/* Precise target slots for each card matching reference layout */}
+          {/* Invisible target slots for flying cards */}
           {programs.map((program, index) => (
             <div 
               key={index}
-              className="w-80 h-96 flex items-center justify-center" 
+              className="w-80 h-96 flex items-center justify-center opacity-0" 
               data-target-slot={index}
             >
-              {/* Placeholder that will be replaced by flying cards */}
-              <div className="w-full h-full bg-primary-medium/20 rounded-2xl border border-secondary-cyan/20 flex items-center justify-center opacity-30">
-                <div className="text-center">
-                  <program.icon className="w-12 h-12 text-secondary-cyan/50 mx-auto mb-4" />
-                  <h3 className="text-lg font-semibold text-light-blue/50">{program.title}</h3>
-                  <p className="text-sm text-light-blue/30 mt-2">{program.description}</p>
-                </div>
-              </div>
+              {/* Completely invisible placeholder - cards will land here */}
+              <div className="w-full h-full"></div>
             </div>
           ))}
         </div>

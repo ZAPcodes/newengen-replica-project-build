@@ -136,13 +136,37 @@ export const useCardAnimation = ({
       }, 0.55 + index * 0.06);
     });
 
-    // Phase 3: Final settling animation (75-100% of scroll)
+    // Phase 3: Final settling animation with position change (75-100% of scroll)
     cards.forEach((card, index) => {
+      const targetSlot = gridSlots[index] as HTMLElement;
+      if (!targetSlot) return;
+
+      // Final positioning - change from fixed to static positioning
       tl.to(card, {
         duration: 0.15,
         ease: "back.out(1.7)",
         scale: 1.05,
         zIndex: 10 + index,
+        onComplete: () => {
+          // Change positioning to static so cards stay in services section
+          gsap.set(card, {
+            position: "static",
+            transform: "none",
+            top: "auto",
+            left: "auto",
+            xPercent: 0,
+            yPercent: 0,
+            x: 0,
+            y: 0,
+            zIndex: "auto"
+          });
+          
+          // Make the target slot visible and append the card
+          if (targetSlot) {
+            targetSlot.style.opacity = "1";
+            targetSlot.appendChild(card);
+          }
+        }
       }, 0.85 + index * 0.02)
       .to(card, {
         duration: 0.1,
